@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/02 13:10:13 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/02 13:25:10 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,10 @@ typedef struct	s_cursor
 	int x;
 	int y;
 }				t_cursor;
+typedef struct	s_ptr
+{
+    int *mlx;
+    int *win;
 
+}               s_ptr;
 #endif
