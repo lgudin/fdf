@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/02 12:30:52 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/02 13:08:20 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,11 @@ typedef struct  s_pix
     int z;
     int color;
 }       t_pix;
+
+typedef struct	s_cursor
+{
+	int x;
+	int y;
+}				t_cursor;
 
 #endif
