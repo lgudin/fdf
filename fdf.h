@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/02 13:08:20 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/02 13:10:13 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct  s_pix
+typedef struct  s_pt
 {
     int x;
     int y;
     int z;
     int color;
-}       t_pix;
+}       t_pt;
 
 typedef struct	s_cursor
 {
