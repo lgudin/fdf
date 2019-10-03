@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 14:01:18 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/03 14:16:02 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/03 21:52:15 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,10 @@ t_pt 	**get_points(int fd, t_pt **tab, t_cursor *width)
 		c.x = 0;
 		while (c.x < width->x)
 		{
-			tab[c.y][c.x].x = c.x;
-			tab[c.y][c.x].y = c.y;
-			tab[c.y][c.x].z = ft_atoi(tabis[c.y][c.x]);
+			tab[c.y][c.x].x = LAYOUT + c.x * SIZE;
+			tab[c.y][c.x].y = LAYOUT + c.y * SIZE;
+			tab[c.y][c.x].z = ft_atoi(tabis[c.y][c.x]) * HAUTEUR;
+			tab[c.y][c.x].color = tab[c.y][c.x].z < 0 ? 0x0000FF : 0x00FF00;
 			//printf("tring to print\n");
 			//printf("point[%d, %d] : x %d: y : %d z : %d \n", c.y, c.x,tab[c.y][c.x].x , tab[c.y][c.x].y, tab[c.y][c.x].z);
 			c.x++;

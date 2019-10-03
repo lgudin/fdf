@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/03 14:16:00 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/03 21:50:33 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 # define FDF_H 
 # define FALSE 0
 # define TRUE 1
-# define LAYOUT 200
-# define SIZE 45
+# define LAYOUT -1500
+# define SIZE 2
+# define HAUTEUR 0.2
 
+#include <math.h>
 # include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -27,9 +29,9 @@
 
 typedef struct  s_pt
 {
-    int x;
-    int y;
-    int z;
+    float x;
+    float y;
+    float z;
     int color;
 }               t_pt;
 
@@ -65,5 +67,11 @@ void bresenham(int x1, int y1, int x2, int y2, int *win_ptr, int *mlx_ptr, int c
 ** TOOL.C
 */
 char		*ft_strjoinfree(char const *s1, char const *s2);
+/*
+**
+*/
+int	draw_line(t_pt point_zero, t_pt point_one, t_ptr ptr);
+int	another_function(t_pt point_zero, t_pt point_one, t_ptr ptr);
+int	function(t_pt point_zero, t_pt point_one, t_ptr ptr);
 
 #endif

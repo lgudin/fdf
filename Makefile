@@ -6,13 +6,13 @@
 #    By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/02 11:22:48 by jcanteau          #+#    #+#              #
-#    Updated: 2019/10/02 12:07:09 by lgudin           ###   ########.fr        #
+#    Updated: 2019/10/02 17:46:37 by lgudin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 HEAD = fdf.h
-SRC = main.c
+SRC = main.c read.c ../libft/libft.a
 OBJ = $(SRC:.c=.o)
 
 MLXFLAG = -I /usr/local/include
