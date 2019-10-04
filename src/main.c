@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:13:23 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/04 18:35:29 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/04 19:38:27 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_error(void)
 	return (1);
 }
 
-void projection_tintintin(t_proj **proj, t_pt **tab, t_cursor *width, t_event val)
+void projection_tintintin(t_proj **proj, t_pt **tab, t_cursor *width, t_event *val)
 {
     int y;
     int x;
@@ -29,8 +29,8 @@ void projection_tintintin(t_proj **proj, t_pt **tab, t_cursor *width, t_event va
         x = 0;
         while (x < width->x)
         {
-            proj[y][x].x = (((tab[y][x].x * val.size) - tab[y][x].y * val.size) * cos(0.523599) + (1920/ 2)) + val.x; // 0.523599
-            proj[y][x].y = (-(tab[y][x].z * val.size) + ((tab[y][x].x + tab[y][x].y) * val.size) * sin(0.523599) + (1280 / 2)) + val.y;
+            proj[y][x].x = (((tab[y][x].x * val->size) - tab[y][x].y * val->size) * cos(0.523599) + (1920/ 2)) + val->x; // 0.523599
+            proj[y][x].y = (-(tab[y][x].z * val->size) + ((tab[y][x].x + tab[y][x].y) * val->size) * sin(0.523599) + (1280 / 2)) + val->y;
             proj[y][x].color = set_color(tab[y][x], val);
             x++;
         }
@@ -44,7 +44,8 @@ int main(__unused int ac, char **av)
     t_pt        **tab;
     t_proj      **proj;
     t_cursor    *width;
-    t_event     val;
+    t_event     *val;
+
     tab     = NULL;
     proj    = NULL;
 
@@ -61,6 +62,9 @@ int main(__unused int ac, char **av)
     if (!(proj = proj_tab_malloc(proj, width)))
         return(ft_error());
     ft_putstrln("proj tab malloc passed");
+
+    set_full_map(ptr, width, BLACK);
+    ft_putstrln("Map salement recouverte");
 
     projection_tintintin(proj, tab, width, val);
     ft_putstrln("Traitement passed");

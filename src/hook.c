@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:23:31 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/04 17:40:30 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/04 19:32:48 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,42 +18,48 @@ int	ft_key_hook(int keycode, t_event val)
 	if (keycode == ESC)
 		exit(0);
 	else if (keycode == RIGHT_ARROW || keycode == LEFT_ARROW
-			|| keycode == DOWN_ARROW ||
-			keycode == UP_ARROW)
+			|| keycode == DOWN_ARROW || keycode == UP_ARROW)
 		ft_key_hook_move(keycode, val);
-	/*
-	else if (keycode == MORE || keycode == LESS)
-		ft_key_hook_alt(keycode, fdf);
-	else if (keycode == ONE_NUM_PAD || keycode == TWO_NUM_PAD)
-		ft_key_hook_zoom(keycode, fdf);
-	else if (keycode == P)
-		ft_key_hook_proj(fdf);
-	else if (keycode == Z)
-		ft_init(fdf);
-	ft_expose_hook(fdf);
-    */
+	else if (keycode == I || keycode == O)
+		ft_key_hook_zoom(keycode, val);
+	else if (keycode == R)
+		ft_key_hook_reset(val);
+	// reste à actualiser : del / reprint
+	 // ft_expose_hook(fdf);
 	return (0);
+}
+
+void	ft_key_hook_reset(t_event val)
+{
+	val.x = 0;
+	val.y = 0;
+	val.size = 0;
+	val.alti = 0;
+	val.color = REGULAR;
+}
+
+void	ft_key_hook_zoom(int keycode, t_event val)
+{
+	if (keycode == I)
+		val.size+= ZOOM_SPEED;
+	else if (keycode == O)
+		val.size-= ZOOM_SPEED;
 }
 
 void	ft_key_hook_move(int keycode, t_event val)
 {
 	if (keycode == RIGHT_ARROW)
-	{
-		val.x += val.x + (1 * val.size);
-	}
+		val.x += (MOVE_SPEED * val.size);
 	else if (keycode == LEFT_ARROW)
-	{
-		val.x -= val.x + (1 * val.size);
-	}
+		val.x -= (MOVE_SPEED * val.size);
 	else if (keycode == UP_ARROW)
-	{
-		val.y += val.y - (1 * val.size);
-	}
+		val.y -= (MOVE_SPEED* val.size);
 	else if (keycode == DOWN_ARROW)
-	{
-		val.y += val.y + (1 * val.size);
-	}
+		val.y += (MOVE_SPEED * val.size);
 }
+
+// ce qu'on doit faire  : 
+
 /*int	ft_expose_hook(t_ptr ptr)
 {
 	fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, fdf->win_length, fdf->win_width);

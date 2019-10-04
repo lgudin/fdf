@@ -6,13 +6,13 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 13:55:38 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/04 17:03:25 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/04 19:33:20 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void    recover_map(t_ptr ptr, t_cursor *width, int color)
+void    set_full_map(t_ptr ptr, t_cursor *width, int color)
 {
     (void)ptr;
     t_proj point_zero;
