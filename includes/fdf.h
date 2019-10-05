@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/04 19:38:53 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/05 02:15:36 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_pt     **get_points(int fd, t_pt **tab, t_cursor *width);
 */
 
 int		 ft_error(void);
-void     projection_tintintin(t_proj **proj, t_pt **tab, t_cursor *width, t_event val);
+void     projection_tintintin(t_proj **proj, t_pt **tab, t_cursor *width, t_event *val);
 
 /*
 ** TOOL.C
@@ -128,13 +128,13 @@ void    set_full_map(t_ptr ptr, t_cursor *width, int color);
 int     ft_key_hook(int keycode, t_event *val);
 void	ft_key_hook_move(int keycode, t_event *val);
 void	ft_key_hook_zoom(int keycode, t_event *val);
-void	ft_key_hook_reset(t_event val);
+void	ft_key_hook_reset(t_event *val);
 //int	ft_expose_hook(t_ptr ptr);
 
 /*
 ** COLOR_SET.C
 */
 int     set_color(t_pt tab, t_event *val);
-int     color_set_map(t_pt tab);
-int     color_set_vaporwave(t_pt tab);
+int     color_set_map(float z);
+int     color_set_vaporwave(float z);
 #endif

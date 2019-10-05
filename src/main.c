@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:13:23 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/04 19:38:27 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/05 02:16:12 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int main(__unused int ac, char **av)
 
     tab     = NULL;
     proj    = NULL;
-
+    val     = NULL;
     if (!(width = (t_cursor*)malloc(sizeof(t_cursor))))
         return (0);
 

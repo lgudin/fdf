@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 14:01:18 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/04 19:50:25 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/05 02:16:50 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,57 +23,41 @@ t_pt **ft_read_points(char *av, t_pt **tab, t_cursor *width)
 	close(fd);
 	return (tab);
 }
-char ** ft_fruit_ninja(int fd, t_cursor *width, char **tabis)
+char ***ft_fruit_ninja(int fd, t_cursor *width, char ***tabis)
 {
-	t_cursor c;
 	char 	**basic_map;
 	char	 *big_line;
 	int y;
 	
-	c.x = 0;
 	y = 0;
 
 	big_line = get_big_line(fd);
-	basic_map = ft_strsplit(big_line, '\n'); // penser au strsplitfree
+	basic_map = ft_strsplit(big_line, '\n'); // penser aux leaks
+	ft_strdel(&big_line);
 	width->y = 	ft_tablen(basic_map);
 	
 	if (!(tabis = (char ***)malloc(sizeof(char **) * (width->y + 1))))
 		return (0);
-	c.y = -1;
-	while (++c.y < width->y)
+	y = -1;
+	while (++y < width->y)
 	{
-		tabis[c.y] = ft_strsplit(basic_map[c.y], ' ');
+		tabis[y] = ft_strsplit(basic_map[y], ' ');
+		ft_strdel(&basic_map[y]);
 	}
+	free(basic_map);
 	width->x = ft_tablen(tabis[0]);
-	if (!(tab = tab_malloc(tab, width)))
-		return (NULL);
+	return (tabis);
 }
+
 t_pt 	**get_points(int fd, t_pt **tab, t_cursor *width)
 {
 	t_cursor c;
 	char 	***tabis;
-	char 	**basic_map;
-	char	 *big_line;
-	int y;
-	
-	c.x = 0;
-	y = 0;
 
-	big_line = get_big_line(fd);
-	basic_map = ft_strsplit(big_line, '\n'); // penser au strsplitfree
-	width->y = 	ft_tablen(basic_map);
-	
-	if (!(tabis = (char ***)malloc(sizeof(char **) * (width->y + 1))))
-		return (0);
-	c.y = -1;
-	while (++c.y < width->y)
-	{
-		tabis[c.y] = ft_strsplit(basic_map[c.y], ' ');
-	}
-	width->x = ft_tablen(tabis[0]);
+	tabis = NULL;
+	tabis = ft_fruit_ninja(fd, width, tabis);
 	if (!(tab = tab_malloc(tab, width)))
 		return (NULL);
-	tabis = ft_fruit_ninja(fd, width, tabis);
 	c.y = 0;
 	while (c.y < width->y)
 	{
@@ -83,12 +67,12 @@ t_pt 	**get_points(int fd, t_pt **tab, t_cursor *width)
 			tab[c.y][c.x].x =  c.x;
 			tab[c.y][c.x].y =   c.y;
 			tab[c.y][c.x].z = ft_atoi(tabis[c.y][c.x]);
-			//tab[c.y][c.x].color = tab[c.y][c.x].z < 5 ? 0x5555FF : 0xFF5555 ;
-			tab[c.y][c.x].color = tab[c.y][c.x].z < -5 ? DEEP_BLUE : tab[c.y][c.x].z < 0 ? BLUE : tab[c.y][c.x].z > 10 ? WHITE : tab[c.y][c.x].z > 5 ? BROWN : GRASSE ;
+			tab[c.y][c.x].color = PINK;
 			c.x++;
 		}
+		ft_strdel(tabis[c.y]);
 		c.y++;
 	}
-	//penser a free basic map 
+	free(tabis);
 	return (tab);
 }
