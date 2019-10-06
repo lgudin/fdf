@@ -6,26 +6,32 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:23:31 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/05 02:15:41 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/06 11:44:30 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	ft_key_hook(int keycode, t_event *val)
+int	ft_key_hook(int keycode, t_fdf *env)
 {
     
 	if (keycode == ESC)
 		exit(0);
 	else if (keycode == RIGHT_ARROW || keycode == LEFT_ARROW
 			|| keycode == DOWN_ARROW || keycode == UP_ARROW)
-		ft_key_hook_move(keycode, val);
+		ft_key_hook_move(keycode, env->val);
 	else if (keycode == I || keycode == O)
-		ft_key_hook_zoom(keycode, val);
+		ft_key_hook_zoom(keycode, env->val);
 	else if (keycode == R)
-		ft_key_hook_reset(val);
+		ft_key_hook_reset(env->val);
+
 	// reste à actualiser : del / reprint
 	 // ft_expose_hook(fdf);
+
+	 // SANS IMAGE ca donne :
+	 projection_tintintin(env);
+	 set_full_map(env->ptr, env->width, BLACK);
+	 print_map(env->proj, env->ptr, env->width);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:13:23 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/05 02:16:12 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/06 11:42:11 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ int		ft_error(void)
 	return (1);
 }
 
-void projection_tintintin(t_proj **proj, t_pt **tab, t_cursor *width, t_event *val)
+void projection_tintintin(t_fdf *env)
 {
     int y;
     int x;
 
     y = 0;
-    while (y < width->y)
+    while (y < env->width->y)
     {
         x = 0;
-        while (x < width->x)
+        while (x < env->width->x)
         {
-            proj[y][x].x = (((tab[y][x].x * val->size) - tab[y][x].y * val->size) * cos(0.523599) + (1920/ 2)) + val->x; // 0.523599
-            proj[y][x].y = (-(tab[y][x].z * val->size) + ((tab[y][x].x + tab[y][x].y) * val->size) * sin(0.523599) + (1280 / 2)) + val->y;
-            proj[y][x].color = set_color(tab[y][x], val);
+            env->proj[y][x].x = (((env->tab[y][x].x * env->val->size) - env->tab[y][x].y * env->val->size) * cos(0.523599) + (1920/ 2)) + env->val->x; // 0.523599
+            env->proj[y][x].y = (-(env->tab[y][x].z * env->val->size) + ((env->tab[y][x].x + env->tab[y][x].y) * env->val->size) * sin(0.523599) + (1280 / 2)) + env->val->y;
+            env->proj[y][x].color = set_color(env->tab[y][x], env->val);
             x++;
         }
         y++;
@@ -40,42 +40,38 @@ void projection_tintintin(t_proj **proj, t_pt **tab, t_cursor *width, t_event *v
 
 int main(__unused int ac, char **av)
 {
-    t_ptr       ptr;
-    t_pt        **tab;
-    t_proj      **proj;
-    t_cursor    *width;
-    t_event     *val;
+    t_fdf   *env;
 
-    tab     = NULL;
-    proj    = NULL;
-    val     = NULL;
-    if (!(width = (t_cursor*)malloc(sizeof(t_cursor))))
+    env->tab     = NULL;
+    env->proj    = NULL;
+    env->val     = NULL;
+    if (!(env->width = (t_cursor*)malloc(sizeof(t_cursor))))
         return (0);
 
-    ptr.mlx = mlx_init();
-    ptr.win = mlx_new_window(ptr.mlx, 1920, 1280, "On fait pas fdf nous ??");
+    env->ptr.mlx = mlx_init();
+    env->ptr.win = mlx_new_window(env->ptr.mlx, 1920, 1280, "On fait pas fdf nous ??");
 
-    if (!(tab = ft_read_points(av[1], tab, width)))
+    if (!(env->tab = ft_read_points(av[1], env->tab, env->width)))
         return (ft_error());
     ft_putstrln("read passed");
     
-    if (!(proj = proj_tab_malloc(proj, width)))
+    if (!(env->proj = proj_tab_malloc(env->proj, env->width)))
         return(ft_error());
     ft_putstrln("proj tab malloc passed");
 
-    set_full_map(ptr, width, BLACK);
+    set_full_map(env->ptr, env->width, BLACK);
     ft_putstrln("Map salement recouverte");
 
-    projection_tintintin(proj, tab, width, val);
+    projection_tintintin(env);
     ft_putstrln("Traitement passed");
     
-    print_map(proj, ptr, width);
+    print_map(env->proj, env->ptr, env->width);
     ft_putstrln("print passed");
 
-    mlx_hook(ptr.win, 2, 3, ft_key_hook, (void*)0);
+    mlx_hook(env->ptr.win, 2, 3, ft_key_hook, (void*)0);
 	//mlx_expose_hook(ptr.win, ft_expose_hook, ptr);
 
-    mlx_loop(ptr.mlx);
+    mlx_loop(env->ptr.mlx);
     return (0);
 }
 //gcc -g -I /usr/local/include ./src/*.c ../libft/libft.a -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -Wall -Werror -Wextra -fsanitize=address
