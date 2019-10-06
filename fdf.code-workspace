@@ -9,7 +9,8 @@
 	],
 	"settings": {
 		"files.associations": {
-			"algorithm": "c"
+			"algorithm": "c",
+			"ios": "cpp"
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/06 11:42:44 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/06 17:22:00 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@
 # define FALSE 0
 # define TRUE 1
 
-# define MOVE_SPEED 0.1
-# define ZOOM_SPEED 0.1
+# define HAUTEUR 1280
+# define LARGEUR 1920 
+
+# define MOVE_SPEED 1
+# define ZOOM_SPEED 1
+
+# define BASIC_COLOR BLUE
 
 
 
@@ -28,7 +33,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include "../../42_Projects/libft/libft.h"
+# include "../../libft/libft.h"
 # include "definekey.h"
 # include "colors.h"
 
@@ -91,14 +96,14 @@ typedef struct  s_fdf
 ** READ.C
 */
 
-t_pt     **ft_read_points(char *av, t_pt **tab, t_cursor *width);
+t_pt **ft_read_points(char *av, t_pt **tab, t_cursor *width);
 t_pt     **get_points(int fd, t_pt **tab, t_cursor *width);
 
 /*
 ** MAIN.C
 */
 
-int		 ft_error(void);
+int		ft_error(char *s);
 void projection_tintintin(t_fdf *env);
 /*
 ** TOOL.C
@@ -128,7 +133,7 @@ t_pt	**tab_malloc(t_pt **tab, t_cursor *width);
 */
 
 void    print_map(t_proj **map, t_ptr ptr, t_cursor *width);
-void    set_full_map(t_ptr ptr, t_cursor *width, int color);
+void    set_full_map(t_ptr ptr, int color);
 
 /*
 ** HOOK.cC
@@ -137,7 +142,7 @@ void    set_full_map(t_ptr ptr, t_cursor *width, int color);
 int     ft_key_hook(int keycode, t_fdf *env);
 void	ft_key_hook_move(int keycode, t_event *val);
 void	ft_key_hook_zoom(int keycode, t_event *val);
-void	ft_key_hook_reset(t_event *val);
+void	val_init(t_event *val, t_cursor *width);
 //int	ft_expose_hook(t_ptr ptr);
 
 /*

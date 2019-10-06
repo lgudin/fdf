@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:23:31 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/06 11:44:30 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/06 17:25:57 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,25 @@ int	ft_key_hook(int keycode, t_fdf *env)
 	else if (keycode == I || keycode == O)
 		ft_key_hook_zoom(keycode, env->val);
 	else if (keycode == R)
-		ft_key_hook_reset(env->val);
+		val_init(env->val, env->width);
 
 	// reste à actualiser : del / reprint
 	 // ft_expose_hook(fdf);
 
 	 // SANS IMAGE ca donne :
+	 set_full_map(env->ptr, BLACK);
 	 projection_tintintin(env);
-	 set_full_map(env->ptr, env->width, BLACK);
 	 print_map(env->proj, env->ptr, env->width);
 	return (0);
 }
 
-void	ft_key_hook_reset(t_event *val)
+void	val_init(t_event *val, t_cursor *width)
 {
+	(void)width;
 	val->x = 0;
 	val->y = 0;
-	val->size = 0;
-	val->alti = 0;
+	val->size = 50;//(((LARGEUR / width->y / 2) + (HAUTEUR/ width->x / 2)) / 2);
+	val->alti = 1;
 	val->color = REGULAR;
 }
 
