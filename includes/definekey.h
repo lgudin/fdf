@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:27:32 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/04 17:07:52 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/06 19:05:18 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@
 # define RIGHT_ARROW 124
 # define DOWN_ARROW 125
 # define UP_ARROW 126
+
+#define SPACE_BAR 49
 
 #endif

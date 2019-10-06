@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:23:31 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/06 17:25:57 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/06 21:16:35 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int	ft_key_hook(int keycode, t_fdf *env)
 		ft_key_hook_zoom(keycode, env->val);
 	else if (keycode == R)
 		val_init(env->val, env->width);
+	else if (keycode == LESS || keycode == MORE)
+		ft_key_hook_alti(keycode, env->val);
+	else if (keycode == C)
+		ft_key_hook_color_mode(env->val);
+
 
 	// reste à actualiser : del / reprint
 	 // ft_expose_hook(fdf);
@@ -40,9 +45,24 @@ void	val_init(t_event *val, t_cursor *width)
 	(void)width;
 	val->x = 0;
 	val->y = 0;
-	val->size = 50;//(((LARGEUR / width->y / 2) + (HAUTEUR/ width->x / 2)) / 2);
-	val->alti = 1;
-	val->color = REGULAR;
+	val->size = INIT_SIZE;
+	val->alti = INIT_ALTI;
+	val->color_mode = REGULAR;
+}
+void	ft_key_hook_color_mode(t_event *val)
+{
+	if (val->color_mode < LAST)
+		val->color_mode++;
+	else if (val->color_mode == LAST)
+		val->color_mode = 0;
+}
+
+void	ft_key_hook_alti(int keycode, t_event *val)
+{
+	if (keycode == MORE)
+		val->alti+= ALTI_SPEED;
+	else
+		val->alti-= ALTI_SPEED;	
 }
 
 void	ft_key_hook_zoom(int keycode, t_event *val)
@@ -65,16 +85,12 @@ void	ft_key_hook_move(int keycode, t_event *val)
 		val->y += (MOVE_SPEED * val->size);
 }
 
-// ce qu'on doit faire  : 
-
-/*int	ft_expose_hook(t_ptr ptr)
+int	ft_expose_hook(t_fdf *env)
 {
-	fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, fdf->win_length, fdf->win_width);
-	fdf->data = mlx_get_data_addr(fdf->img_ptr, &fdf->bpp,
-			&fdf->size_line, &fdf->endian);
-	ft_draw(fdf);
-	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
-	mlx_destroy_image(fdf->mlx_ptr, fdf->img_ptr);
+	env->ptr.img = mlx_new_image(env->ptr.mlx, LARGEUR, HAUTEUR);
+	env->ptr.img_data = mlx_get_data_addr(env->ptr.img, (int*)32, (int*)(LARGEUR * 4) /* LINE SIZE */ , (int*)0 /*ENDIAN ?? */);
+	// IL FAUT L'EDIT CETTE PUTAIN D'IMAGE : convertir le ft_print 
+	mlx_put_image_to_window(env->ptr.mlx, env->ptr.win, env->ptr.img, 0, 0);
+	mlx_destroy_image(env->ptr.mlx, env->ptr.img);
 	return (0);
 }
-*/

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:13:23 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/06 17:27:02 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/06 21:07:38 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void projection_tintintin(t_fdf *env)
         {
             env->proj[y][x].x = (((env->tab[y][x].x * env->val->size) - env->tab[y][x].y * env->val->size) * cos(0.523599) + (LARGEUR/ 2)) + env->val->x; // 0.523599
             env->proj[y][x].y = (-((env->tab[y][x].z * env->val->size) * env->val->alti) + ((env->tab[y][x].x + env->tab[y][x].y) * env->val->size) * sin(0.523599) + (HAUTEUR / 2)) + env->val->y;
-            env->proj[y][x].color = set_color(env->tab[y][x], env->val);
+            env->proj[y][x].color = hex_to_rgb(set_color(env->tab[y][x], env->val), env->proj[y][x].color);
             x++;
         }
         y++;
@@ -59,6 +59,8 @@ int main(__unused int ac, char **av)
 
     env->ptr.mlx = mlx_init();
     env->ptr.win = mlx_new_window(env->ptr.mlx, LARGEUR, HAUTEUR, "On fait pas fdf nous ??");
+    env->ptr.img = mlx_new_image(env->ptr.mlx, LARGEUR, HAUTEUR);
+    
 
     if (!(env->tab = ft_read_points(av[1], env->tab, env->width)))
         return (ft_error("ft_read_points"));

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/06 17:22:00 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/06 21:07:36 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 
 # define MOVE_SPEED 1
 # define ZOOM_SPEED 1
+# define ALTI_SPEED 1
+
+#define INIT_SIZE 3
+#define INIT_ALTI 0.3
 
 # define BASIC_COLOR BLUE
 
@@ -43,6 +47,7 @@ enum color_mode
     MAP,
     EGYPTIAN,
     VAPORWAVE,
+    LAST,
 }       color_mode;
 
 typedef struct s_event
@@ -51,14 +56,21 @@ typedef struct s_event
     float y;
     float size;
     float alti;
-    enum color_mode color;
+    enum color_mode color_mode;
 }               t_event;
+
+typedef struct s_rgb
+{
+    unsigned char  color_r;
+    unsigned char  color_g;
+    unsigned char  color_b;
+}              t_rgb;
 
 typedef struct s_proj
 {
     float x;
     float y;
-    int color;
+    t_rgb color;
 }               t_proj;
 
 typedef struct  s_pt
@@ -79,6 +91,8 @@ typedef struct	s_ptr
 {
     int *mlx;
     int *win;
+    int *img;
+    char *img_data;
 
 }               t_ptr;
 
@@ -141,13 +155,16 @@ void    set_full_map(t_ptr ptr, int color);
 
 int     ft_key_hook(int keycode, t_fdf *env);
 void	ft_key_hook_move(int keycode, t_event *val);
+void	ft_key_hook_alti(int keycode, t_event *val);
 void	ft_key_hook_zoom(int keycode, t_event *val);
+void	ft_key_hook_color_mode(t_event *val);
 void	val_init(t_event *val, t_cursor *width);
 //int	ft_expose_hook(t_ptr ptr);
 
 /*
 ** COLOR_SET.C
 */
+t_rgb    hex_to_rgb(int hex_color, t_rgb splitted_color);
 int     set_color(t_pt tab, t_event *val);
 int     color_set_map(float z);
 int     color_set_vaporwave(float z);

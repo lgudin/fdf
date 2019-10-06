@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 15:41:57 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/04 13:30:16 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/06 20:41:41 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	function(t_proj point_zero, t_proj point_one, t_ptr ptr)
 		/*if (x >= 0 && y >= 0 && x < width.x && y < width.y)
 			(*fdf)->image_grid[y][x] = MID_COLOR(point_one.color, point_zero.color);
 		*/
-    mlx_pixel_put(ptr.mlx, ptr.win, x, y, point_zero.color);
+    mlx_pixel_put(ptr.mlx, ptr.win, x, y, PINK);//point_zero.color);
     if (decision > 0)
 		{
 			y += yi;
@@ -65,7 +65,7 @@ int	another_function(t_proj point_zero, t_proj point_one, t_ptr ptr)
     if (x >= 0 && y >= 0 && x < IMAGE_X && y < IMAGE_Y)
 			(*fdf)->image_grid[y][x] = MID_COLOR(point_one.color, point_zero.color);
     */
-    mlx_pixel_put(ptr.mlx, ptr.win, x, y, point_zero.color);
+    mlx_pixel_put(ptr.mlx, ptr.win, x, y, PINK);//point_zero.color);
 		if (decision > 0)
 		{
 			x += xi;
