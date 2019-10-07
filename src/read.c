@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 14:01:18 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/06 19:29:06 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/07 08:41:31 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_pt **ft_read_points(char *av, t_pt **tab, t_cursor *width)
 	close(fd);
 	return (tab);
 }
+
 char ***ft_fruit_ninja(int fd, t_cursor *width, char ***tabis)
 {
 	char 	**basic_map;

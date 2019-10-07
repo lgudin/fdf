@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:27:32 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/06 19:05:18 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/07 18:22:08 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@
 # define UP_ARROW 126
 
 #define SPACE_BAR 49
+#define TABULATION 48
 
 #endif

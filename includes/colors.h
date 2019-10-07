@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 17:08:05 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/04 18:16:33 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/07 19:01:57 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define PURPLE     0x601EC8
 
 # define GRASSE     0x609F38
-# define SAND       0xdbd1b4
+# define SAND       0xe5c66a
 
 # define PINK       0xFF14DD
 # define VAPOR_PINK 0xff71ce
