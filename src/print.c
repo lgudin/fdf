@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 13:55:38 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/07 18:41:06 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/08 13:05:10 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_put_pixel(t_fdf *env, float x, float y,t_rgb color)
 {
-    if ( x <= LARGEUR && x >= 0 && y <= HAUTEUR && y >= 0 && ((x * (env->ptr.bpp / 8)) + (y * env->ptr.size_line) + 3) < HAUTEUR * LARGEUR * 4)
+    if ( x <= LARGEUR && x >= 0 && y <= HAUTEUR && y >= 0 && ((x * (env->ptr.bpp / 8)) + (y * env->ptr.size_line) + 3) < HAUTEUR * LARGEUR * 4) // SECURITE INT MAX
     {
         env->ptr.img_data[(int)((x * (env->ptr.bpp / 8)) + (y * env->ptr.size_line))] = color.color_r;
         env->ptr.img_data[(int)((x * (env->ptr.bpp / 8)) + (y * env->ptr.size_line) + 1)] = color.color_g;

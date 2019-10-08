@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/07 18:49:19 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/08 12:21:05 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,23 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include "../../libft/libft.h"
+// # include "../../libft/libft.h" // PC 42
+#include  "../../42_Projects/libft/libft.h" // PC Portable
 # include "definekey.h"
 # include "colors.h"
+
+enum dir
+{
+    BAS_GAUCHE,
+    BAS_DROIT,
+    HAUT_GAUCHE,
+    HAUT_DROIT,
+}   dir;
+enum stat_mode
+{
+    REG_S,
+    LOCK_S,
+}    stat_mode;
 
 enum projection_mode
 {
@@ -49,6 +63,7 @@ enum projection_mode
     CONIQUE,
     LAST_P,
 }    proj_mode;
+
 enum color_mode
 {
     REGULAR, // REGULAR vaut 0 ;) 
@@ -58,7 +73,7 @@ enum color_mode
     LAST,
 }       color_mode;
 
-typedef struct s_event
+typedef struct s_event // val 
 {
     float x;
     float y;
@@ -110,13 +125,15 @@ typedef struct	s_ptr
 
 }               t_ptr;
 
-typedef struct  s_fdf
+typedef struct  s_fdf // env
 {
     t_event     *val;
     t_proj      **proj;
     t_cursor    *width;
     t_ptr       ptr;
     t_pt        **tab;
+    enum stat_mode stat_mode;
+    enum dir dir;
 }               t_fdf;
 
 
@@ -175,8 +192,8 @@ void	ft_key_hook_move(int keycode, t_fdf *env);
 void	ft_key_hook_alti(int keycode, t_event *val);
 void	ft_key_hook_zoom(int keycode, t_event *val);
 
-
-void    ft_key_hook_proj_mod(t_event *val);
+void    ft_key_hook_screen_mode(t_fdf *env);
+void    ft_key_hook_proj_mode(t_event *val);
 void	ft_key_hook_color_mode(t_event *val);
 
 void	ft_project_change(int keycode, t_fdf *env);
@@ -192,4 +209,10 @@ t_rgb    hex_to_rgb(int hex_color);
 int     set_color(t_pt tab, t_event *val);
 int     color_set_map(float z);
 int     color_set_vaporwave(float z);
+/*
+** LOCK_SCREEN.C
+*/
+void    derive_fdf_main(t_fdf *env);
+int    derive_fdf(int keycode, t_fdf *env);
+
 #endif

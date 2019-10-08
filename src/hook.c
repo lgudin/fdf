@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:23:31 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/07 19:42:37 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/07 20:30:16 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ int	ft_key_hook(int keycode, t_fdf *env)
     
 	if (keycode == ESC)
 		exit(0);
+	else if (keycode == U)
+		ft_key_hook_screen_mode(env);
+	else if (keycode == L || env->stat_mode == LOCK_S) // Tant qu'on unlock pas avec U on est bloqué sur ce mode
+		ft_key_hook_screen_mode(env);
 	else if (keycode == RIGHT_ARROW || keycode == LEFT_ARROW
 			|| keycode == DOWN_ARROW || keycode == UP_ARROW)
 		ft_key_hook_move(keycode, env);
@@ -31,18 +35,18 @@ int	ft_key_hook(int keycode, t_fdf *env)
 	else if (keycode == A || keycode == D)
 		ft_project_change(keycode, env);
 	else if (keycode == TABULATION)
-	{
-		ft_key_hook_proj_mod(env->val);
-	}
-	/*else if (keycode == L)
-		ft_key_hook_screen(env);
-	*/
-
+		ft_key_hook_proj_mode(env->val);
 	ft_expose_hook(env);
 	return (0);
 }
 
-void	ft_key_hook_proj_mod(t_event *val)
+void    ft_key_hook_screen_mode(t_fdf *env)
+{
+    if (env->stat_mode == REG_S)
+		env->stat_mode = LOCK_S;
+}
+
+void	ft_key_hook_proj_mode(t_event *val)
 {
 	if (val->p_mod == CONIQUE)
 		val->p_mod = PARA;
@@ -109,7 +113,8 @@ int	ft_expose_hook(t_fdf *env)
 	if (!(env->ptr.img = mlx_new_image(env->ptr.mlx, LARGEUR, HAUTEUR)))
 		return (ft_error("mlx_new_image passe pas"));
 	env->ptr.img_data = mlx_get_data_addr(env->ptr.img, &env->ptr.bpp, &env->ptr.size_line,&env->ptr.endian);
-	
+	if (env->stat_mode == LOCK_S)
+		derive_fdf(env);
 	if (env->val->p_mod == PARA)
 		projection_tintintin(env);
 	else
