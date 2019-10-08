@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/08 12:21:05 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/08 17:17:03 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 #define LAYOUT 300
 
 # define MOVE_SPEED 1
-# define ZOOM_SPEED 1
+# define ZOOM_SPEED 1.1
 # define ALTI_SPEED 0.1
 
 #define INIT_SIZE 3
-#define INIT_ALTI 0.3
+#define INIT_ALTI 0.1
 
 # define BASIC_COLOR PINK
 
@@ -39,8 +39,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-// # include "../../libft/libft.h" // PC 42
-#include  "../../42_Projects/libft/libft.h" // PC Portable
+# include "../../libft/libft.h" // PC 42
+//#include  "../../42_Projects/libft/libft.h" // PC Portable
 # include "definekey.h"
 # include "colors.h"
 
@@ -130,10 +130,13 @@ typedef struct  s_fdf // env
     t_event     *val;
     t_proj      **proj;
     t_cursor    *width;
+    t_cursor    *layout;
+    t_cursor    borne;
+    t_rgb       lock_color;
     t_ptr       ptr;
     t_pt        **tab;
     enum stat_mode stat_mode;
-    enum dir dir;
+    enum dir    dir;
 }               t_fdf;
 
 
@@ -184,7 +187,7 @@ void    set_square(t_cursor p_one, t_cursor p_two,t_fdf *env, int color);
 /*
 ** HOOK.cC
 */
-void	val_init(t_event *val, t_cursor *width);
+void	val_init(t_event *val);
 
 int     ft_key_hook(int keycode, t_fdf *env);
 
@@ -212,7 +215,11 @@ int     color_set_vaporwave(float z);
 /*
 ** LOCK_SCREEN.C
 */
-void    derive_fdf_main(t_fdf *env);
-int    derive_fdf(int keycode, t_fdf *env);
+void        derive_fdf_main(t_fdf *env);
+int       derive_fdf(int keycode, t_fdf *env);
+int         lock_color_switch(void);
+t_cursor    ft_get_borne(t_proj **proj, t_cursor *width);
+int         ft_boing(enum dir *dir, t_fdf *env, t_cursor borne);
+void         ft_ca_bouge(enum dir dir, t_fdf *env);
 
 #endif

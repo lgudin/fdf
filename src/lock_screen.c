@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:03:37 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/08 13:21:55 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/08 18:00:11 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,82 +14,120 @@
 
 void    derive_fdf_main(t_fdf *env)
 {
+    enum dir dir;
+    
+    dir = BAS_GAUCHE;
+    env->borne = ft_get_borne(env->proj, env->width);
+    
+    ft_putstrln("derive fdf main");
+    
     while (env->stat_mode == LOCK_S)
     {
         mlx_hook(env->ptr.win, 2, 3, derive_fdf, env);
+        if (ft_boing(&dir, env, env->borne))
+            env->lock_color = hex_to_rgb(lock_color_switch());
+        ft_ca_bouge(dir, env);
+        ft_expose_hook(env);
     }
 }
 
-int    derive_fdf(int keycode, t_fdf *env)
+int   derive_fdf(int keycode, t_fdf *env)
 {
-    t_cursor c;
-
-    c.x = 0;
-    c.y = 0;
-    enum dir dir;
-
-    dir = BAS_GAUCHE;
-
+    if (keycode == L)
+        env->stat_mode = REG_S;
+    else if (keycode == ESC)
+        exit(0);
+    else
+        ft_putstrln("PRESS L TO LEAVE THE LOCKSCREEN MODE");
+    return (1);
 }
 
-int ft_ca_bouge(enum dir dir, t_fdf *env)
+int    lock_color_switch(void)
 {
- if (dir == BAS_GAUCHE)
+    static int count = 0;
+
+    if (count++ == 0)
+        return (OLD_GREEN);
+    else if (count++ == 1)
+        return(OLD_BLUE);
+    else if (count++ == 2)
+        return(OLD_PINK);
+    else if (count++ == 3)
+        return (OLD_PURPLE);
+    else 
     {
-        env->val->x++;
-        env->val->y++;
+        count = 0;
+        return (OLD_ORANGE);
+    }
+    ft_putstrln("Error : lock_color_switch");
+    return(WHITE);
+}
+
+void    ft_ca_bouge(enum dir dir, t_fdf *env)
+{
+    if (dir == BAS_GAUCHE)
+    {
+        env->layout->x++;
+        env->layout->y++;
     }
     else if (dir == BAS_DROIT)
     {
-        env->val->x--;
-        env->val->y++;
+        env->layout->x--;
+        env->layout->y++;
     }
     else if (dir == HAUT_GAUCHE)
     {
-        env->val->x++;
-       env->val->y--;
+        env->layout->x++;
+       env->layout->y--;
     }
     else if (dir == HAUT_DROIT)
     {
-        env->val->x--;
-        env->val->y--;
+        env->layout->x--;
+        env->layout->y--;
     }
 }
 
-int ft_boing(enum dir dir, t_fdf *env)
+int ft_boing(enum dir *dir, t_fdf *env, t_cursor borne)
 {
-    if (env->proj[0][env->width->x].x >= env->width->x) // si on touche la doite 
+    if (borne.x + env->layout->x >= LARGEUR) // si on touche la droite 
     {
-        // ( verif à faire : angle ?? ) juste à la gestion de couleur en soit 
-        dir = (dir == BAS_DROIT ? BAS_GAUCHE : HAUT_GAUCHE);
-        // changement de couleur ?? kl
+        *dir = (*dir == BAS_DROIT ? BAS_GAUCHE : HAUT_GAUCHE);
+        return (1);
     }
-    else if (env->val->x <= 0)
+    else if (borne.x + env->layout->x <= 0)
     {
-        dir = (dir == BAS_GAUCHE ? BAS_DROIT : HAUT_DROIT);
+        *dir = (*dir == BAS_GAUCHE ? BAS_DROIT : HAUT_DROIT);
+        return (1);
     }
-    else if (env->val->y >= env->width->y)
+    else if (borne.y + env->layout->y >= HAUTEUR)
     {
-        dir = (dir == BAS_DROIT ? HAUT_GAUCHE : HAUT_DROIT);
+        *dir = (*dir == BAS_DROIT ? HAUT_GAUCHE : HAUT_DROIT);
+        return (1);
     }
-    else if(env ->val->y <= 0)
+    else if(borne.y + env->layout->y <= 0)
     {
-        dir = (dir == HAUT_DROIT ? BAS_GAUCHE : BAS_DROIT);
+        *dir = (*dir == HAUT_DROIT ? BAS_GAUCHE : BAS_DROIT);
+        return (1);
     }
+    return (0);
 }
 
-void    launch_derive(enum dir dir, t_fdf *env)
+t_cursor    ft_get_borne(t_proj **proj, t_cursor *width)
 {
+    t_cursor borne;
     t_cursor c;
-    dir = BAS_GAUCHE;
-    
-    c.y = 0;
-    c.x = 0;
 
-    if (env->proj[c.y][c.x].x + 1 < env->width->x && env->proj[c.y][c.x].y + 1 )
+    c.y = 0;
+    while (c.y < width->y)
     {
-        env->proj[c.y][c.x].x++;
-        env->proj[c.y][c.x].y++;
+        proj[c.y][width->x].x < borne.x ? borne.x = proj[c.y][width->x].x : 0;
+        c.y++;
     }
-    else if 
+    c.x = 0;
+    while (c.x < width->x)
+    {
+        proj[width->y][c.x].y < borne.y ? borne.y = proj[width->y][c.x].y : 0;
+        c.x++;
+    }
+    return (borne);
 }

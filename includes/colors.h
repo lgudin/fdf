@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 17:08:05 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/07 19:01:57 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/08 18:00:08 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,11 @@
 # define PINK       0xFF14DD
 # define VAPOR_PINK 0xff71ce
 # define VAPOR_BLUE 0x01cdfe
+
+# define OLD_GREEN  0x01FFC3
+# define OLD_BLUE   0x01FFFF
+# define OLD_PINK   0xFFB3FD
+# define OLD_PURPLE 0x9D72FF
+# define OLD_ORANGE 0xFF8B8B
+
 #endif // !COLORS_H

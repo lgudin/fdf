@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:13:23 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/07 20:04:34 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/08 17:13:06 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void projection_para(t_fdf *env)
         x = 0;
         while (x < env->width->x)
         {
-            env->proj[y][x].x = env->tab[y][x].x * env->val->size + env->val->x; // 0.523599
-            env->proj[y][x].y = env->tab[y][x].y * env->val->size + env->val->y;
+            env->proj[y][x].x = env->tab[y][x].x * env->val->size + env->val->x + (LARGEUR / 2); // 0.523599
+            env->proj[y][x].y = env->tab[y][x].y * env->val->size + env->val->y + (HAUTEUR / 2);
             env->proj[y][x].color = hex_to_rgb(set_color(env->tab[y][x], env->val));
             x++;
         }
@@ -69,7 +69,6 @@ int main(__unused int ac, char **av)
     if (!(env->val = (t_event*)ft_memalloc(sizeof(t_event))))
         return (ft_error("Malloc env->val"));
 
-
     env->ptr.endian = 0;
     env->ptr.bpp = 32;
     env->ptr.size_line = LARGEUR * 4;
@@ -81,7 +80,7 @@ int main(__unused int ac, char **av)
     env->val     = NULL;
     */
 
-    val_init(env->val, env->width);
+    val_init(env->val);
 
     env->ptr.mlx = mlx_init();
     env->ptr.win = mlx_new_window(env->ptr.mlx, LARGEUR, HAUTEUR, "On fait pas fdf nous ??");
@@ -89,6 +88,8 @@ int main(__unused int ac, char **av)
 
     if (!(env->tab = ft_read_points(av[1], env->tab, env->width)))
         return (ft_error("ft_read_points"));
+    
+    env->val->size = (((LARGEUR / env->width->x) + (HAUTEUR / env->width->y)) / 2);
     
     if (!(env->proj = proj_tab_malloc(env->proj, env->width)))
         return(ft_error("proj_tab malloc"));
