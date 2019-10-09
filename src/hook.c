@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:23:31 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/08 17:17:17 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/09 18:46:33 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_key_hook(int keycode, t_fdf *env)
     
 	if (keycode == ESC)
 		exit(0);
-	else if (keycode == L || env->stat_mode == LOCK_S) // Tant qu'on unlock pas avec L on est bloqué sur ce mode
+	else if (keycode == L) // Tant qu'on unlock pas avec L on est bloqué sur ce mode
 		ft_key_hook_screen_mode(env);
 	else if (keycode == RIGHT_ARROW || keycode == LEFT_ARROW
 			|| keycode == DOWN_ARROW || keycode == UP_ARROW)
@@ -115,7 +115,6 @@ int	ft_expose_hook(t_fdf *env)
 		projection_para(env);
 	else if (!(env->stat_mode == LOCK_S)) 
 		return(ft_error("Aucun mode de projection"));
-	
 	fill_image(env);
 	mlx_put_image_to_window(env->ptr.mlx, env->ptr.win, env->ptr.img, 0, 0);
 	mlx_destroy_image(env->ptr.mlx, env->ptr.img);

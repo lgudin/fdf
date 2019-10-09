@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:13:23 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/08 17:13:06 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/09 18:38:05 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void projection_para(t_fdf *env)
         x = 0;
         while (x < env->width->x)
         {
-            env->proj[y][x].x = env->tab[y][x].x * env->val->size + env->val->x + (LARGEUR / 2); // 0.523599
-            env->proj[y][x].y = env->tab[y][x].y * env->val->size + env->val->y + (HAUTEUR / 2);
+            env->proj[y][x].x = env->tab[y][x].x * env->val->size + env->val->x + env->val->size; // 0.523599
+            env->proj[y][x].y = env->tab[y][x].y * env->val->size + env->val->y + env->val->size;
             env->proj[y][x].color = hex_to_rgb(set_color(env->tab[y][x], env->val));
             x++;
         }
@@ -49,8 +49,8 @@ void projection_tintintin(t_fdf *env)
         x = 0;
         while (x < env->width->x)
         {
-            env->proj[y][x].x = (((env->tab[y][x].x * env->val->size) - env->tab[y][x].y * env->val->size) * cos(0.523599 * env->val->wtf)) + env->val->x + (LARGEUR / 2); // 0.523599
-            env->proj[y][x].y = (-((env->tab[y][x].z * env->val->size) * env->val->alti) + ((env->tab[y][x].x + env->tab[y][x].y) * env->val->size) * sin(0.523599 * env->val->wtf)) + env->val->y + (HAUTEUR / 2);
+            env->proj[y][x].x = (((env->tab[y][x].x * env->val->size) - env->tab[y][x].y * env->val->size) * cos(0.523599 * env->val->wtf)) + env->val->x + env->val->size; // 0.523599
+            env->proj[y][x].y = (-((env->tab[y][x].z * env->val->size) * env->val->alti) + ((env->tab[y][x].x + env->tab[y][x].y) * env->val->size) * sin(0.523599 * env->val->wtf)) + env->val->y + env->val->size;
             env->proj[y][x].color = hex_to_rgb(set_color(env->tab[y][x], env->val));
             x++;
         }
@@ -75,6 +75,14 @@ int main(__unused int ac, char **av)
     
     env->val->wtf = 1;
     env->val->angle = 0.5;
+
+    env->layout.x = 0;
+    env->layout.y = 0;
+
+    env->borne.x = 0;
+    env->borne.y = 0;
+
+    env->stat_mode = REG_S;
     /*env->tab     = NULL;
     env->proj    = NULL;
     env->val     = NULL;
@@ -89,7 +97,7 @@ int main(__unused int ac, char **av)
     if (!(env->tab = ft_read_points(av[1], env->tab, env->width)))
         return (ft_error("ft_read_points"));
     
-    env->val->size = (((LARGEUR / env->width->x) + (HAUTEUR / env->width->y)) / 2);
+    env->val->size = LARGEUR / ((env->width->x > env->width->y ? env->width->x : env->width->y) + 1);
     
     if (!(env->proj = proj_tab_malloc(env->proj, env->width)))
         return(ft_error("proj_tab malloc"));
@@ -100,7 +108,7 @@ int main(__unused int ac, char **av)
     print_map(env);
     ft_putstrln("print passed");
     */
-
+    ft_putstr("AHEIN");
     mlx_hook(env->ptr.win, 2, 3, ft_key_hook, env);
 	mlx_expose_hook(env->ptr.win, ft_expose_hook,env); // ft qui reprint ?
     //ft_expose_hook(env);

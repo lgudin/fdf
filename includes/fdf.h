@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/09 10:17:49 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/09 18:45:53 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define FALSE 0
 # define TRUE 1
 
-# define HAUTEUR 640
-# define LARGEUR 840
+# define HAUTEUR 1000
+# define LARGEUR 1000
 
 #define LAYOUT 300
 
@@ -26,10 +26,10 @@
 # define ZOOM_SPEED 1.1
 # define ALTI_SPEED 0.1
 
-#define INIT_SIZE 3
+#define INIT_SIZE 1
 #define INIT_ALTI 0.1
 
-# define BASIC_COLOR PINK
+# define BASIC_COLOR BLUE
 
 
 
@@ -39,8 +39,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-//# include "../../libft/libft.h" // PC 42
-#include  "../../42_Projects/libft/libft.h" // PC Portable
+# include "../../libft/libft.h" // PC 42
+//#include  "../../42_Projects/libft/libft.h" // PC Portable
 # include "definekey.h"
 # include "colors.h"
 
@@ -130,8 +130,9 @@ typedef struct  s_fdf // env
     t_event     *val;
     t_proj      **proj;
     t_cursor    *width;
-    t_cursor    *layout;
+    t_cursor    layout;
     t_cursor    borne;
+    t_cursor    borne_min;
     t_rgb       lock_color;
     t_ptr       ptr;
     t_pt        **tab;
@@ -182,7 +183,7 @@ t_pt	**tab_malloc(t_pt **tab, t_cursor *width);
 */
 
 void    fill_image(t_fdf *env);
-void	ft_put_pixel(t_fdf *env, float x, float y, t_rgb color);
+void	ft_put_pixel(t_fdf *env, int x, int y,t_rgb color);
 void    set_square(t_cursor p_one, t_cursor p_two,t_fdf *env, int color);
 /*
 ** HOOK.cC
@@ -218,7 +219,7 @@ int         color_set_vaporwave(float z);
 void        derive_fdf_main(t_fdf *env);
 int         derive_fdf(int keycode, t_fdf *env);
 int         lock_color_switch(void);
-t_cursor    ft_get_borne(t_proj **proj, t_cursor *width);
+void        ft_get_borne(t_fdf *env);
 int         ft_boing(t_fdf *env);
 void        ft_ca_bouge(t_fdf *env);
 
