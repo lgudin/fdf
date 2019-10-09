@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/09 18:45:53 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/09 21:02:16 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 #define INIT_SIZE 1
 #define INIT_ALTI 0.1
 
+# define DVD_SPEED 5
 # define BASIC_COLOR BLUE
-
 
 
 #include <math.h>
@@ -71,6 +71,7 @@ enum color_mode
     EGYPTIAN,
     VAPORWAVE,
     LAST,
+    DVD,
 }       color_mode;
 
 typedef struct s_event // val 

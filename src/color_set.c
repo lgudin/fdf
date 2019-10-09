@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:06:54 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/07 13:56:35 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/09 21:16:39 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,23 @@ int    set_color(t_pt tab, t_event *val)
     {
         return (color_set_vaporwave(tab.z));
     }
+    else if (val->color_mode == DVD)
+    {
+        dvd_color_set        
+    }
     ft_putstrln("ERROR : mode de couleur non implementé dans HOOK");
     return (tab.color);
+}
+
+void	color_set_dvd(t_fdf *env)
+{
+
+			if (env->tab[c.y][c.x].z == 0)
+				env->tab[c.y][c.x].color = BLACK;
+			else
+				env->tab[c.y][c.x].color = lock_color_switch();
+		}
+	}
 }
 
 int     color_set_vaporwave(float z)

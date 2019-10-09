@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 13:55:38 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/09 18:43:41 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/09 21:11:21 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,12 @@ void	ft_put_pixel(t_fdf *env, int x, int y,t_rgb color)
 {
     int calculation;
 
-    calculation = (x * (env->ptr.bpp / 8)) + (y * env->ptr.size_line);
-    printf("%d ", calculation);
     if (env->stat_mode == LOCK_S)
     {
         x += env->layout.x;
         y += env->layout.y;
-        color = env->lock_color;
     }
     calculation = (x * (env->ptr.bpp / 8)) + (y * env->ptr.size_line);
-    printf("%d\n", calculation);
     if ( x <= LARGEUR && x >= 0 && y <= HAUTEUR && y >= 0 && calculation + 3 < HAUTEUR * LARGEUR * 4) // SECURITE INT MAX
     {
         //ft_putchar('a');

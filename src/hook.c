@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:23:31 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/09 18:46:33 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/09 21:12:59 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,18 @@
 
 int	ft_key_hook(int keycode, t_fdf *env)
 {
-    
 	if (keycode == ESC)
 		exit(0);
-	else if (keycode == L) // Tant qu'on unlock pas avec L on est bloqué sur ce mode
+	else if (keycode == U)
+	{
+		env->val->color_mode == REGULAR;
+		env->val->y += env->layout.y;
+		env->val->x += env->layout.x;
+		env->layout.y = 0;
+		env->layout.x = 0;
+		env->stat_mode = REG_S;
+	}
+	else if (keycode == L || keycode == 1L<<5 || env->stat_mode == LOCK_S) // Tant qu'on unlock pas avec L on est bloqué sur ce mode
 		ft_key_hook_screen_mode(env);
 	else if (keycode == RIGHT_ARROW || keycode == LEFT_ARROW
 			|| keycode == DOWN_ARROW || keycode == UP_ARROW)
@@ -40,10 +48,34 @@ int	ft_key_hook(int keycode, t_fdf *env)
 
 void    ft_key_hook_screen_mode(t_fdf *env)
 {
+	if (env->stat_mode == REG_S)
+	{
+		ft_get_borne(env);
+		env->val->color_mode == DVD;
+		dvd_color_set(env);
+	}
 	env->stat_mode = LOCK_S;
-	derive_fdf_main(env);
+		ft_ca_bouge(env);
+		if (ft_boing(env))
+			dvd_color_set(env);
 }
 
+void	dvd_color_set(t_fdf *env)
+{
+	t_cursor c;
+	c.y = -1;
+	while (++c.y < env->width->y)
+	{
+		c.x = -1;
+		while (++c.x < env->width->x)
+		{
+			if (env->tab[c.y][c.x].z == 0)
+				env->tab[c.y][c.x].color = BLACK;
+			else
+				env->tab[c.y][c.x].color = lock_color_switch();
+		}
+	}
+}
 void	ft_key_hook_proj_mode(t_event *val)
 {
 	if (val->p_mod == CONIQUE)

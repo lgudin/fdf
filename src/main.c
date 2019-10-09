@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:13:23 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/09 18:38:05 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/09 20:45:15 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int main(__unused int ac, char **av)
     print_map(env);
     ft_putstrln("print passed");
     */
-    ft_putstr("AHEIN");
+    mlx_hook(env->ptr.win, 1L<<5, 0 , ft_key_hook, env);
     mlx_hook(env->ptr.win, 2, 3, ft_key_hook, env);
 	mlx_expose_hook(env->ptr.win, ft_expose_hook,env); // ft qui reprint ?
     //ft_expose_hook(env);
