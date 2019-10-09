@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:03:37 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/08 18:00:11 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/09 10:20:37 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void    derive_fdf_main(t_fdf *env)
 {
-    enum dir dir;
-    
-    dir = BAS_GAUCHE;
+    env->layout->x = 0;
+    env->layout->y = 0;
+    env->dir = BAS_GAUCHE;
     env->borne = ft_get_borne(env->proj, env->width);
     
     ft_putstrln("derive fdf main");
@@ -24,9 +24,9 @@ void    derive_fdf_main(t_fdf *env)
     while (env->stat_mode == LOCK_S)
     {
         mlx_hook(env->ptr.win, 2, 3, derive_fdf, env);
-        if (ft_boing(&dir, env, env->borne))
+        if (ft_boing(env))
             env->lock_color = hex_to_rgb(lock_color_switch());
-        ft_ca_bouge(dir, env);
+        ft_ca_bouge(env);
         ft_expose_hook(env);
     }
 }
@@ -63,50 +63,50 @@ int    lock_color_switch(void)
     return(WHITE);
 }
 
-void    ft_ca_bouge(enum dir dir, t_fdf *env)
+void    ft_ca_bouge(t_fdf *env)
 {
-    if (dir == BAS_GAUCHE)
+    if (env->dir == BAS_GAUCHE)
     {
         env->layout->x++;
         env->layout->y++;
     }
-    else if (dir == BAS_DROIT)
+    else if (env->dir == BAS_DROIT)
     {
         env->layout->x--;
         env->layout->y++;
     }
-    else if (dir == HAUT_GAUCHE)
+    else if (env->dir == HAUT_GAUCHE)
     {
         env->layout->x++;
        env->layout->y--;
     }
-    else if (dir == HAUT_DROIT)
+    else if (env->dir == HAUT_DROIT)
     {
         env->layout->x--;
         env->layout->y--;
     }
 }
 
-int ft_boing(enum dir *dir, t_fdf *env, t_cursor borne)
+int ft_boing(t_fdf *env)
 {
-    if (borne.x + env->layout->x >= LARGEUR) // si on touche la droite 
+    if (env->borne.x + env->layout->x >= LARGEUR) // si on touche la droite
     {
-        *dir = (*dir == BAS_DROIT ? BAS_GAUCHE : HAUT_GAUCHE);
+        env->dir = env->dir == BAS_DROIT ? BAS_GAUCHE : HAUT_GAUCHE;
         return (1);
     }
-    else if (borne.x + env->layout->x <= 0)
+    else if (env->borne.x + env->layout->x <= 0)
     {
-        *dir = (*dir == BAS_GAUCHE ? BAS_DROIT : HAUT_DROIT);
+        env->dir = env->dir == BAS_GAUCHE ? BAS_DROIT : HAUT_DROIT;   
         return (1);
     }
-    else if (borne.y + env->layout->y >= HAUTEUR)
-    {
-        *dir = (*dir == BAS_DROIT ? HAUT_GAUCHE : HAUT_DROIT);
+    else if (env->borne.y + env->layout->y >= HAUTEUR)
+    {   
+        env->dir = env->dir == BAS_DROIT ? HAUT_GAUCHE : HAUT_DROIT;
         return (1);
     }
-    else if(borne.y + env->layout->y <= 0)
+    else if(env->borne.y + env->layout->y <= 0)
     {
-        *dir = (*dir == HAUT_DROIT ? BAS_GAUCHE : BAS_DROIT);
+        env->dir = env->dir == HAUT_DROIT ? BAS_GAUCHE : BAS_DROIT;
         return (1);
     }
     return (0);
@@ -118,15 +118,15 @@ t_cursor    ft_get_borne(t_proj **proj, t_cursor *width)
     t_cursor c;
 
     c.y = 0;
-    while (c.y < width->y)
+    while (c.y < width->y - 1)
     {
-        proj[c.y][width->x].x < borne.x ? borne.x = proj[c.y][width->x].x : 0;
-        c.y++;
+        proj[c.y][width->x - 1].x < borne.x ? borne.x = proj[c.y][width->x - 1].x : 0;
+        c.y++;  
     }
     c.x = 0;
-    while (c.x < width->x)
+    while (c.x < width->x -1)
     {
-        proj[width->y][c.x].y < borne.y ? borne.y = proj[width->y][c.x].y : 0;
+        proj[width->y - 1][c.x].y < borne.y ? borne.y = proj[width->y - 1][c.x].y : 0;
         c.x++;
     }
     return (borne);

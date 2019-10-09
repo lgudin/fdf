@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/08 17:17:03 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/09 10:17:49 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define FALSE 0
 # define TRUE 1
 
-# define HAUTEUR 1280
-# define LARGEUR 1920 
+# define HAUTEUR 640
+# define LARGEUR 840
 
 #define LAYOUT 300
 
@@ -39,8 +39,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include "../../libft/libft.h" // PC 42
-//#include  "../../42_Projects/libft/libft.h" // PC Portable
+//# include "../../libft/libft.h" // PC 42
+#include  "../../42_Projects/libft/libft.h" // PC Portable
 # include "definekey.h"
 # include "colors.h"
 
@@ -208,18 +208,18 @@ int     ft_expose_hook(t_fdf *env);
 /*
 ** COLOR_SET.C
 */
-t_rgb    hex_to_rgb(int hex_color);
-int     set_color(t_pt tab, t_event *val);
-int     color_set_map(float z);
-int     color_set_vaporwave(float z);
+t_rgb       hex_to_rgb(int hex_color);
+int         set_color(t_pt tab, t_event *val);
+int         color_set_map(float z);
+int         color_set_vaporwave(float z);
 /*
 ** LOCK_SCREEN.C
 */
 void        derive_fdf_main(t_fdf *env);
-int       derive_fdf(int keycode, t_fdf *env);
+int         derive_fdf(int keycode, t_fdf *env);
 int         lock_color_switch(void);
 t_cursor    ft_get_borne(t_proj **proj, t_cursor *width);
-int         ft_boing(enum dir *dir, t_fdf *env, t_cursor borne);
-void         ft_ca_bouge(enum dir dir, t_fdf *env);
+int         ft_boing(t_fdf *env);
+void        ft_ca_bouge(t_fdf *env);
 
 #endif
