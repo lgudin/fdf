@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 14:01:18 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/07 08:41:31 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 10:43:26 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_pt **ft_read_points(char *av, t_pt **tab, t_cursor *width)
 	return (tab);
 }
 
-char ***ft_fruit_ninja(int fd, t_cursor *width, char ***tabis)
+char ***ft_str_ninja(int fd, t_cursor *width, char ***tabis)
 {
 	char 	**basic_map;
 	char	 *big_line;
@@ -37,7 +37,7 @@ char ***ft_fruit_ninja(int fd, t_cursor *width, char ***tabis)
 	ft_strdel(&big_line);
 	width->y = 	ft_tablen(basic_map);
 	
-	if (!(tabis = (char ***)malloc(sizeof(char **) * (width->y + 1))))
+	if (!(tabis = (char ***)ft_memalloc(sizeof(char **) * (width->y + 1))))
 		return (0);
 	y = -1;
 	while (++y < width->y)
@@ -56,7 +56,7 @@ t_pt 	**get_points(int fd, t_pt **tab, t_cursor *width)
 	char 	***tabis;
 
 	tabis = NULL;
-	tabis = ft_fruit_ninja(fd, width, tabis);
+	tabis = ft_str_ninja(fd, width, tabis);
 	if (!(tab = tab_malloc(tab, width)))
 		return (NULL);
 	c.y = 0;
@@ -68,7 +68,7 @@ t_pt 	**get_points(int fd, t_pt **tab, t_cursor *width)
 			tab[c.y][c.x].x =  c.x;
 			tab[c.y][c.x].y =   c.y;
 			tab[c.y][c.x].z = ft_atoi(tabis[c.y][c.x]);
-			tab[c.y][c.x].color = BASIC_COLOR;
+			tab[c.y][c.x].color = INIT_COLOR;
 			//printf("x = %.0f y = %.0f z = %.0f color = %d\n", tab[c.y][c.x].x, tab[c.y][c.x].y , tab[c.y][c.x].z, tab[c.y][c.x].color);
 			c.x++;
 		}

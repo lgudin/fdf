@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:06:54 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/09 21:16:39 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 10:31:23 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int    set_color(t_pt tab, t_event *val)
         return (tab.color);
     else if (val->color_mode == MAP)
     {
-        return (color_set_map(tab.z));
+        return (color_set_mode_map(tab.z));
     }
     else if (val->color_mode == EGYPTIAN)
     {
@@ -38,49 +38,30 @@ int    set_color(t_pt tab, t_event *val)
     }
     else if (val->color_mode == VAPORWAVE)
     {
-        return (color_set_vaporwave(tab.z));
+        return (color_set_mode_vaporwave(tab.z));
     }
     else if (val->color_mode == DVD)
     {
-        dvd_color_set        
+        return(color_set_mode_dvd(tab.z));
     }
     ft_putstrln("ERROR : mode de couleur non implementé dans HOOK");
     return (tab.color);
 }
 
-void	color_set_dvd(t_fdf *env)
+void	dvd_color_set(t_fdf *env)
 {
+	t_cursor c;
+	int color;
 
-			if (env->tab[c.y][c.x].z == 0)
-				env->tab[c.y][c.x].color = BLACK;
-			else
-				env->tab[c.y][c.x].color = lock_color_switch();
-		}
+	c.y = -1;
+	color = lock_color_switch();
+	while (++c.y < env->width->y)
+	{
+		c.x = -1;
+		while (++c.x < env->width->x)
+			env->proj[c.y][c.x].color =
+			hex_to_rgb(set_color(env->tab[c.y][c.x], env->val) == BLACK ?
+			 set_color(env->tab[c.y][c.x], env->val) : color );
 	}
 }
 
-int     color_set_vaporwave(float z)
-{
-    if (z < 1)
-    {
-        return (VAPOR_BLUE);
-    }
-    else
-    {
-        return (VAPOR_PINK);
-    }
-    
-}
-int     color_set_map(float z)
-{
-    if (z <= -5)
-        return (DEEP_BLUE);
-    else if (z <= 0)
-        return (BLUE);
-    else if (z <= 10)
-        return (GRASSE);
-    else if (z <= 18)
-        return (BROWN);
-    else
-        return (WHITE);
-}

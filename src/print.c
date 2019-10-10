@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 13:55:38 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/09 21:11:21 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 02:18:21 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,9 @@ void	ft_put_pixel(t_fdf *env, int x, int y,t_rgb color)
     calculation = (x * (env->ptr.bpp / 8)) + (y * env->ptr.size_line);
     if ( x <= LARGEUR && x >= 0 && y <= HAUTEUR && y >= 0 && calculation + 3 < HAUTEUR * LARGEUR * 4) // SECURITE INT MAX
     {
-        //ft_putchar('a');
         env->ptr.img_data[calculation] = color.color_r;
         env->ptr.img_data[calculation + 1] = color.color_g;
         env->ptr.img_data[calculation + 2] = color.color_b;
-    }
-}
-
-void    set_square(t_cursor p_one, t_cursor p_two,t_fdf *env, int color)
-{
-    t_cursor c;
-
-    c.y = p_one.y;
-    while (c.y < p_two.y && c.y < env->width->y)
-    {
-        c.x = p_one.x;
-        while (c.x < p_two.x && c.x < env->width->x)
-        {
-            ft_put_pixel(env, c.x, c.y, hex_to_rgb(color));
-            c.x++;
-        }
-        c.y++;
     }
 }
 

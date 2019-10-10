@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:03:37 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/09 20:45:18 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 10:09:29 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ int    lock_color_switch(void)
 
     count++;
     if (count == 0)
-    {
         return (OLD_GREEN);
-    }
     else if (count == 1)
         return(OLD_BLUE);
     else if (count++ == 2)
@@ -51,27 +49,13 @@ void    ft_ca_bouge(t_fdf *env)
     else if (env->dir == HAUT_GAUCHE)
     {
         env->layout.x -= DVD_SPEED;
-       env->layout.y -= DVD_SPEED;
+        env->layout.y -= DVD_SPEED;
     }
     else if (env->dir == HAUT_DROIT)
     {
         env->layout.x += DVD_SPEED;
         env->layout.y -= DVD_SPEED;
-    }
-    ft_putstr("Layout max  x= ");
-    ft_putnbr(env->layout.x + env->borne.x);
-    ft_putchar('\n');
-    ft_putstr("Layout  max y = ");
-    ft_putnbr(env->layout.y + env->borne.y);
-    ft_putchar('\n');
-    ft_putstr("Layout min  x= ");
-    ft_putnbr(env->layout.x + env->borne_min.x);
-    ft_putchar('\n');
-    ft_putstr("Layout  min y = ");
-    ft_putnbr(env->layout.y + env->borne_min.y);
-    ft_putchar('\n');
-    ft_putchar('\n');
-    
+    } 
 }
 
 int ft_boing(t_fdf *env)
@@ -79,29 +63,21 @@ int ft_boing(t_fdf *env)
     if (env->borne.x + env->layout.x >= LARGEUR - DVD_SPEED) // DROITE
     {
         env->dir = (env->dir == BAS_DROIT ? BAS_GAUCHE : HAUT_GAUCHE);
-        ft_putstrln(" -> Boing droite");
-        ft_putstrln(dir == BAS_GAUCHE ? "BAS GAUCHE" : "HAUT GAUCHE");
         return (1);
     }
     else if (env->borne_min.x + env->layout.x <= 0 + DVD_SPEED) // GAUCHE
     {
         env->dir = (env->dir == BAS_GAUCHE ? BAS_DROIT : HAUT_DROIT);
-        ft_putstrln("Boing gauche");
-        ft_putstrln(dir == BAS_DROIT ? "BAS DROIT" : "HAUT DROIT");
         return (1);
     }
     else if (env->borne.y + env->layout.y >= HAUTEUR - DVD_SPEED) // BAS
     {   
         env->dir = (env->dir == BAS_DROIT ? HAUT_DROIT : HAUT_GAUCHE);
-       ft_putstrln("Boing bas");
-       ft_putstrln(dir == HAUT_GAUCHE ? "HAUT GAUCHE" : "HAUT DROIT");
         return (1);
     }
     else if(env->borne_min.y + env->layout.y <= 0 + DVD_SPEED) //HAUT
     {
         env->dir = (env->dir == HAUT_DROIT ? BAS_DROIT : BAS_GAUCHE);
-    ft_putstrln("Boing haut");
-    ft_putstrln(dir == BAS_DROIT ? "BAS DROIT" : "BAS GAUCHE");
         return (1);
     }
     return (0);
@@ -112,47 +88,25 @@ void    ft_get_borne(t_fdf *env)
     t_cursor c;
 
     c.y = 0;
+    c.x = 0;
     env->borne_min.y = HAUTEUR;
     env->borne_min.x = LARGEUR;
-
-     env->borne.y = 0;
+    env->borne.y = 0;
     env->borne.x = 0;
-    
     while (c.y < env->width->y - 1)
     {
         if (env->proj[c.y][0].x < env->borne_min.x )
-        {
             env->borne_min.x = env->proj[c.y][0].x;
-        }
         if (env->proj[c.y][env->width->x - 1].x > env->borne.x )
-        {
             env->borne.x = env->proj[c.y][env->width->x - 1].x;
-        }
         c.y++;  
     }
-    c.x = 0;
     while (c.x < env->width->x - 1)
     {
         if (env->proj[0][c.x].y < env->borne_min.y )
-        {
             env->borne_min.y = env->proj[0][c.x].y;
-        }
         if (env->proj[env->width->y - 1][c.x].y > env->borne.y )
-        {
             env->borne.y = env->proj[env->width->y - 1][c.x].y;
-        }
         c.x++;
     }
-    ft_putstr("MIN X = ");
-    ft_putnbr( env->borne_min.x);
-    ft_putchar('\n');
-    ft_putstr("MAX X = ");
-    ft_putnbr( env->borne.x);
-    ft_putchar('\n');
-    ft_putstr("MIN Y = ");
-    ft_putnbr( env->borne_min.y);
-    ft_putchar('\n');
-    ft_putstr("MAX Y = ");
-    ft_putnbr( env->borne.y);
-    ft_putchar('\n');
 }
