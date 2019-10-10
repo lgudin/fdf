@@ -6,42 +6,40 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:13:23 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/10 10:16:21 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 16:26:30 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int		ft_error(char *s)
+void		*ft_error(char *s)
 {
 	ft_putstr("error :");
     ft_putstrln(s);
-	return (1);
+	return ((void*)NULL);
 }
 
 int main(__unused int ac, char **av)
 {
     t_fdf   *env;
-
+    if (ac < 2 || ac > 3)
+        return((int)ft_error(" Usages : ./fdf [Source_file]"));
     if (!(env = (t_fdf*)ft_memalloc(sizeof(t_fdf))))
-        return (ft_error("Malloc env"));
+        return ((int)ft_error("Malloc env"));
     if (!(env->width = (t_cursor*)ft_memalloc(sizeof(t_cursor))))
-        return (ft_error("Malloc env.width"));
+        return ((int)ft_error("Malloc env.width"));
     if (!(env->val = (t_event*)ft_memalloc(sizeof(t_event))))
-        return (ft_error("Malloc env->val"));
+        return ((int)ft_error("Malloc env->val"));
+    env->val->init_color = (ac == 2 ? INIT_COLOR : atoi(av[2]));
     ft_init(env);
 
-
-    env->ptr.mlx = mlx_init();
-    env->ptr.win = mlx_new_window(env->ptr.mlx, LARGEUR, HAUTEUR, "On fait pas fdf nous ??");
-
     if (!(env->tab = ft_read_points(av[1], env->tab, env->width)))
-        return (ft_error("ft_read_points"));
+        return ((int)ft_error("ft_read_points"));
     
     env->val->size = LARGEUR / ((env->width->x > env->width->y ? env->width->x : env->width->y) + 1);
     
     if (!(env->proj = proj_tab_malloc(env->proj, env->width)))
-        return(ft_error("proj_tab malloc"));
+        return((int)ft_error("proj_tab malloc"));
     mlx_hook(env->ptr.win, 1L<<5, 0 , ft_key_hook, env);
     mlx_hook(env->ptr.win, 2, 3, ft_key_hook, env);
 	mlx_expose_hook(env->ptr.win, ft_expose_hook,env); // ft qui reprint ?

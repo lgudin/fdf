@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/10 10:50:19 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 16:15:58 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-//# include "../../libft/libft.h" // PC 42
-#include  "../../42_Projects/libft/libft.h" // PC Portable
+# include "../../libft/libft.h" // PC 42
+//#include  "../../42_Projects/libft/libft.h" // PC Portable
 
 # include "definekey.h"
 # include "colors.h"
@@ -51,10 +51,11 @@
 char    ***ft_str_ninja(int fd, t_cursor *width, char ***tabis);
 t_pt    **ft_read_points(char *av, t_pt **tab, t_cursor *width);
 t_pt    **get_points(int fd, t_pt **tab, t_cursor *width);
+int     line_check(char **tab);
 /*
 ** MAIN.C
 */
-int		ft_error(char *s);
+void	*ft_error(char *s);
 /*
 ** PROJECTION.C
 */

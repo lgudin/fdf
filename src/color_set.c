@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:06:54 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/10 10:31:23 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 15:08:13 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,17 @@ t_rgb    hex_to_rgb(int hex_color)
 int    set_color(t_pt tab, t_event *val)
 {
     if (val->color_mode == REGULAR)
-        return (tab.color);
+        return (val->init_color);
     else if (val->color_mode == MAP)
-    {
-        return (color_set_mode_map(tab.z));
-    }
+        return (color_set_mode_map(tab.z * val->alti));
     else if (val->color_mode == EGYPTIAN)
-    {
         return (SAND);
-    }
     else if (val->color_mode == VAPORWAVE)
-    {
-        return (color_set_mode_vaporwave(tab.z));
-    }
+        return (color_set_mode_vaporwave(tab.z + val->alti));
     else if (val->color_mode == DVD)
-    {
         return(color_set_mode_dvd(tab.z));
-    }
-    ft_putstrln("ERROR : mode de couleur non implementé dans HOOK");
-    return (tab.color);
+    ft_putstrln("ERROR : mode de couleur non implementé dans color_set.c");
+    return (WHITE);
 }
 
 void	dvd_color_set(t_fdf *env)

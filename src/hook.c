@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:23:31 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/10 10:30:00 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 16:24:55 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_key_hook(int keycode, t_fdf *env)
 {
 	if (keycode == ESC)
 		exit(0);
-	else if (keycode == U)
+	else if (keycode == U && env->stat_mode == LOCK_S)
 		ft_key_hook_set_regu_back(env);
 	else if (keycode == L || env->stat_mode == LOCK_S) // Tant qu'on unlock pas avec L on est bloqué sur ce mode
 		ft_key_hook_set_lock(env);
@@ -27,7 +27,7 @@ int	ft_key_hook(int keycode, t_fdf *env)
 		ft_key_hook_zoom(keycode, env->val);
 	else if (keycode == R)
 		val_init(env->val);
-	else if (keycode == G || keycode == H)
+	else if (keycode == MORE || keycode == LESS)
 		ft_key_hook_alti(keycode, env->val);
 	else if (keycode == C)
 		ft_key_hook_color_mode(env->val);
@@ -63,7 +63,7 @@ void    ft_key_hook_set_lock(t_fdf *env)
 int	ft_expose_hook(t_fdf *env)
 {
 	if (!(env->ptr.img = mlx_new_image(env->ptr.mlx, LARGEUR, HAUTEUR)))
-		return (ft_error("mlx_new_image passe pas"));
+		return ((int)ft_error("mlx_new_image passe pas"));
 	env->ptr.img_data = mlx_get_data_addr(env->ptr.img,
 	 &env->ptr.bpp, &env->ptr.size_line, &env->ptr.endian);
 	if (env->stat_mode == REG_S && env->val->p_mod == CONIQUE)
@@ -71,7 +71,7 @@ int	ft_expose_hook(t_fdf *env)
 	else if	(env->stat_mode == REG_S && env->val->p_mod == PARA)
 		projection_para(env);
 	else if (!(env->stat_mode == LOCK_S)) 
-		return(ft_error("Aucun mode de projection"));
+		return((int)ft_error("Aucun mode de projection"));
 	fill_image(env);
 	mlx_put_image_to_window(env->ptr.mlx, env->ptr.win, env->ptr.img, 0, 0);
 	mlx_destroy_image(env->ptr.mlx, env->ptr.img);

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 02:13:06 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/10 10:45:41 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 16:01:36 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ int	color_set_mode_dvd(float z)
 		return(BLACK);
 	else
         return(-1);
-    return(ft_error("DVD Color failed"));
+    return((int)ft_error("DVD Color failed"));
 }

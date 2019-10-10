@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 22:11:54 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/10 10:19:46 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 15:08:53 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_event // val
     float size;
     float alti;
     float angle;
+    int init_color;
     enum projection_mode p_mod;
     enum color_mode color_mode;
 }               t_event;

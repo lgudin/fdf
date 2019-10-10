@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 11:07:49 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/06 11:23:06 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 16:22:13 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,19 @@ int ft_tablen(char **tab)
 	while (tab[y])
 		y++;
 	return (y);
+}
+
+int line_check(char **tab)
+{
+
+	t_cursor c;
+	c.y = -1;
+	while (tab[++c.y])
+	{
+		c.x = -1;
+		while (tab[c.y][++c.x])
+			if (tab[c.y][c.x] != '-' &&(tab[c.y][c.x] < '0' || tab[c.y][c.x] > '9'))
+				return (0);
+	}
+	return (1);
 }
