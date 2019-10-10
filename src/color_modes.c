@@ -6,12 +6,11 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 02:13:06 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/10 16:01:36 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 20:23:20 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
 
 int     color_set_mode_vaporwave(float z)
 {
@@ -19,8 +18,8 @@ int     color_set_mode_vaporwave(float z)
         return (VAPOR_BLUE);
     else
         return (VAPOR_PINK);
-    
 }
+
 int     color_set_mode_map(float z)
 {
     if (z <= -5)
@@ -38,9 +37,9 @@ int     color_set_mode_map(float z)
 int	color_set_mode_dvd(float z)
 {
 
-	if (z == 0)
-		return(BLACK);
+    if (z == 0)
+		return (BLACK);
 	else
-        return(-1);
+        return (-1);
     return((int)ft_error("DVD Color failed"));
 }

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 15:41:57 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/07 14:35:36 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/10 20:20:29 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,58 +14,58 @@
 
 int	function(t_fdf *env, t_proj point_zero, t_proj point_one)
 {
-	int					decision;
-	int					y;
-	int					x;
-	int					yi;
-  int         dy = point_one.y - point_zero.y;
-  int         dx = point_one.x - point_zero.x;
+	int			decision;
+	int			yi;
+	t_cursor	d;
+	t_cursor	c;
 
+	d.y = point_one.y - point_zero.y;
+	d.x = point_one.x - point_zero.x;
 	yi = 1;
-	if (dy < 0)
+	if (d.y < 0)
 		yi *= -1;
-	decision = 2 * yi * dy - dx;
-	y = point_zero.y;
-	x = point_zero.x;
-	while (x <= point_one.x)
+	decision = 2 * yi * d.y - d.x;
+	c.y = point_zero.y;
+	c.x = point_zero.x;
+	while (c.x <= point_one.x)
 	{
-		ft_put_pixel(env, x, y, point_zero.color);
-    	if (decision > 0)
+		ft_put_pixel(env, c.x, c.y, point_zero.color);
+		if (decision > 0)
 		{
-			y += yi;
-			decision -= 2 * dx;
+			c.y += yi;
+			decision -= 2 * d.x;
 		}
-		decision += 2 * dy * yi;
-		x++;
+		decision += 2 * d.y * yi;
+		c.x++;
 	}
 	return (0);
 }
 
 int	another_function(t_fdf *env, t_proj point_zero, t_proj point_one)
 {
-	int		decision;
-	int		y;
-	int		x;
-	int   xi;
-  int   dy = point_one.y - point_zero.y;
-  int   dx = point_one.x - point_zero.x;
+	int			decision;
+	int			xi;
+	t_cursor	d;
+	t_cursor	c;
 
+	d.y = point_one.y - point_zero.y;
+	d.x = point_one.x - point_zero.x;
 	xi = 1;
-	if (dx < 0)
+	if (d.x < 0)
 		xi *= -1;
-	decision = 2 * dx * xi - dy;
-	x = point_zero.x;
-	y = point_zero.y;
-	while (y <= point_one.y)
+	decision = 2 * d.x * xi - d.y;
+	c.x = point_zero.x;
+	c.y = point_zero.y;
+	while (c.y <= point_one.y)
 	{
-		ft_put_pixel(env, x, y, point_zero.color);
+		ft_put_pixel(env, c.x, c.y, point_zero.color);
 		if (decision > 0)
 		{
-			x += xi;
-			decision -= 2 * dy;
+			c.x += xi;
+			decision -= 2 * d.y;
 		}
-		decision += 2 * dx * xi;
-		y++;
+		decision += 2 * d.x * xi;
+		c.y++;
 	}
 	return (0);
 }
