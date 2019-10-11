@@ -6,12 +6,11 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 10:10:56 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/10 11:19:38 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/11 14:30:44 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
 
 void	ft_key_hook_proj_mode(t_event *val)
 {
@@ -19,7 +18,6 @@ void	ft_key_hook_proj_mode(t_event *val)
 		val->p_mod = PARA;
 	else
 		val->p_mod = CONIQUE;
-
 }
 
 void	ft_key_hook_move(int keycode, t_fdf *env)
@@ -46,13 +44,13 @@ void	ft_key_hook_alti(int keycode, t_event *val)
 	if (keycode == MORE)
 		val->alti += ALTI_SPEED;
 	else
-		val->alti -= ALTI_SPEED;	
+		val->alti -= ALTI_SPEED;
 }
 
 void	ft_key_hook_zoom(int keycode, t_event *val)
 {
-	if (keycode == I && val->size < ((HAUTEUR + LARGEUR)/ 2) && ZOOM_SPEED > 1)
-		val->size*= ZOOM_SPEED;
+	if (keycode == I && val->size < ((HAUTEUR + LARGEUR) / 2) && ZOOM_SPEED > 1)
+		val->size *= ZOOM_SPEED;
 	else if (keycode == O && val->size > 0.01 && ZOOM_SPEED > 1)
-		val->size/= ZOOM_SPEED;
+		val->size /= ZOOM_SPEED;
 }

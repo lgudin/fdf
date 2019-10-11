@@ -6,13 +6,13 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 11:07:49 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/10 16:22:13 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/11 20:48:10 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-char		*ft_strjoinfree(char const *s1, char const *s2)
+char	*ft_strjoinfree(char const *s1, char const *s2)
 {
 	char	*str;
 
@@ -25,45 +25,50 @@ char		*ft_strjoinfree(char const *s1, char const *s2)
 
 char	*get_big_line(int fd)
 {
-	char *line;
-	char *big_line;
-	int i = 0;
+	char	*line;
+	char	*big_line;
+	int		i;
+	int gnl;
 
+	i = 0;
 	big_line = ft_strnew(2);
 	while (big_line[i++])
 	{
 		big_line[i] = 0;
 	}
-	
 	line = NULL;
-	while (get_next_line(fd, &line))
-    {	
+	while ((gnl = get_next_line(fd, &line)) == 1)
+	{
 		big_line = ft_strjoinfree(big_line, line);
+		if (!(line_check(line)))
+			return(ft_error("Invalid char in file"));
 		big_line = ft_strcat(big_line, "\n");
 		free(line);
-	}	
+	}
+	if (gnl == -1)
+		return(ft_error("GNL ret -1"));
 	return (big_line);
 }
 
-int ft_tablen(char **tab)
+int		ft_tablen(char **tab)
 {
 	int y;
+
 	y = 0;
 	while (tab[y])
 		y++;
 	return (y);
 }
 
-int line_check(char **tab)
+int		line_check(char *tab)
 {
+	int i;
 
-	t_cursor c;
-	c.y = -1;
-	while (tab[++c.y])
+	i = -1;
+	while (tab[++i])
 	{
-		c.x = -1;
-		while (tab[c.y][++c.x])
-			if (tab[c.y][c.x] != '-' &&(tab[c.y][c.x] < '0' || tab[c.y][c.x] > '9'))
+			if (tab[i] != '-' && tab[i] != ' ' &&
+				(tab[i] < '0' || tab[i] > '9'))
 				return (0);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/10 16:15:58 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/11 19:59:39 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@
 # define ALTI_SPEED 0.1
 
 #define INIT_SIZE 1
-#define INIT_ALTI 0.3
+#define INIT_ALTI 0.1
 # define INIT_COLOR BLUE
-
-
 
 #include <math.h>
 # include "../minilibx_macos/mlx.h"
@@ -51,7 +49,6 @@
 char    ***ft_str_ninja(int fd, t_cursor *width, char ***tabis);
 t_pt    **ft_read_points(char *av, t_pt **tab, t_cursor *width);
 t_pt    **get_points(int fd, t_pt **tab, t_cursor *width);
-int     line_check(char **tab);
 /*
 ** MAIN.C
 */
@@ -67,6 +64,7 @@ void    projection_para(t_fdf *env);
 char    *ft_strjoinfree(char const *s1, char const *s2);
 char    *get_big_line(int fd);
 int     ft_tablen(char **tab);
+int		line_check(char *tab);
 /*
 ** BRESENHAM.C
 */
@@ -84,6 +82,7 @@ t_pt	**tab_malloc(t_pt **tab, t_cursor *width);
 void    fill_image(t_fdf *env);
 void	ft_put_pixel(t_fdf *env, int x, int y,t_rgb color);
 void    set_square(t_cursor p_one, t_cursor p_two,t_fdf *env, int color);
+void	ft_puttxt(t_fdf *env);
 /*
 ** HOOK.cC
 */
