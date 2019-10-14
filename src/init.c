@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 02:10:55 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/11 14:38:21 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/14 18:02:12 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	ft_init(t_fdf *env)
 	val_init(env->val);
 	ptr_init(&env->ptr);
 	env->stat_mode = REG_S;
+	env->val->p_mod = PARA;
 }

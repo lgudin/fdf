@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 10:10:56 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/11 14:30:44 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/14 19:55:39 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	ft_key_hook_color_mode(t_event *val)
 
 void	ft_key_hook_alti(int keycode, t_event *val)
 {
-	if (keycode == MORE)
+	if (keycode == MORE && val->alti < 2147483647 - ALTI_SPEED
+		&& val->alti > -2147483648 + ALTI_SPEED)
 		val->alti += ALTI_SPEED;
 	else
 		val->alti -= ALTI_SPEED;

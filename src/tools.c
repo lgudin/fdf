@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 11:07:49 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/11 20:48:10 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/14 16:53:17 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*get_big_line(int fd)
 	char	*line;
 	char	*big_line;
 	int		i;
-	int gnl;
+	int		gnl;
 
 	i = 0;
 	big_line = ft_strnew(2);
@@ -41,12 +41,12 @@ char	*get_big_line(int fd)
 	{
 		big_line = ft_strjoinfree(big_line, line);
 		if (!(line_check(line)))
-			return(ft_error("Invalid char in file"));
+			return (ft_error("Invalid char in file"));
 		big_line = ft_strcat(big_line, "\n");
 		free(line);
 	}
 	if (gnl == -1)
-		return(ft_error("GNL ret -1"));
+		return (ft_error("GNL ret -1"));
 	return (big_line);
 }
 
@@ -67,9 +67,9 @@ int		line_check(char *tab)
 	i = -1;
 	while (tab[++i])
 	{
-			if (tab[i] != '-' && tab[i] != ' ' &&
+		if (tab[i] != '-' && tab[i] != ' ' &&
 				(tab[i] < '0' || tab[i] > '9'))
-				return (0);
+			return (0);
 	}
 	return (1);
 }

@@ -10,7 +10,9 @@
 	"settings": {
 		"files.associations": {
 			"algorithm": "c",
-			"ios": "cpp"
+			"ios": "cpp",
+			"fdf.h": "c",
+			"sstream": "c"
 		}
 	}
 }
