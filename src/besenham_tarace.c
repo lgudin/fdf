@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 15:41:57 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/10 20:20:29 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/14 22:49:09 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	another_function(t_fdf *env, t_proj point_zero, t_proj point_one)
 
 int	draw_line(t_fdf *env, t_proj point_zero, t_proj point_one)
 {
-	if (fabsf(point_one.y - point_zero.y) < fabsf(point_one.x - point_zero.x))
+	if (labs(point_one.y - point_zero.y) < labs(point_one.x - point_zero.x))
 	{
 		if (point_zero.x > point_one.x)
 			function(env, point_one, point_zero);

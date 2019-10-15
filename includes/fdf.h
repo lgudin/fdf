@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/14 20:19:40 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 09:35:30 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@
 # define ZOOM_SPEED 1.1
 # define ALTI_SPEED 0.1
 
+# define PLAYER_HEIGHT 5
 #define INIT_SIZE 1
-#define INIT_ALTI 0.1
+#define INIT_ALTI 1
 # define INIT_COLOR BLUE
 
 #include <math.h>
@@ -36,8 +37,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-# include "../../libft/libft.h" // PC 42
-//#include  "../../42_Projects/libft/libft.h" // PC Portable
+//# include "../../libft/libft.h" // PC 42
+#include  "../../42_Projects/libft/libft.h" // PC Portable
 
 # include "definekey.h"
 # include "colors.h"
@@ -129,4 +130,16 @@ void    ft_init(t_fdf *env);
 void	val_init(t_event *val);
 void	ptr_init(t_ptr *ptr);
 
+void    ft_move_right(t_fdf *env);
+void    ft_move_left(t_fdf *env);
+void    ft_move_down(t_fdf *env);
+void    ft_move_up(t_fdf *env);
+void    ft_init_game(t_fdf *env);
+void     ft_find_start(t_fdf *env);
+int     ft_is_win(t_fdf *env);
+void    ft_put_around(t_fdf *env);
+void    ft_del_around(t_fdf *env);
+int    ft_check_around(t_fdf *env);
+void	ft_move_pers(int keyhook, t_fdf *env);
+void	ft_putwin(t_fdf *env);
 #endif

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 13:55:38 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/14 17:59:09 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 09:54:43 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ void	ft_puttxt(t_fdf *env)
 		ft_lock_menu(env);
 	else
 		ft_regular_menu(env);
+	if (env->val->game == WIN && env->stat_mode != LOCK_S)
+		ft_putwin(env);
+}
+
+void	ft_putwin(t_fdf *env)
+{
+			mlx_string_put(env->ptr.mlx, env->ptr.win,
+		LARGEUR / 2 - 120, HAUTEUR / 2 + 75, WHITE, "GG ! Press R to restart");
 }
 
 void	ft_lock_menu(t_fdf *env)

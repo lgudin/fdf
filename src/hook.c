@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:23:31 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/14 15:39:11 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 09:52:44 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,25 @@ int		ft_key_hook(int keycode, t_fdf *env)
 		ft_key_hook_set_lock(env);
 	else if (keycode == RIGHT_ARROW || keycode == LEFT_ARROW
 			|| keycode == DOWN_ARROW || keycode == UP_ARROW)
-		ft_key_hook_move(keycode, env);
+		ft_move_pers(keycode, env);
+		//ft_key_hook_move(keycode, env);
 	else if (keycode == I || keycode == O)
 		ft_key_hook_zoom(keycode, env->val);
 	else if (keycode == R)
+	{
 		val_init(env->val);
+		env->val->size = LARGEUR / ((env->width->x > env->width->y ?
+				env->width->x : env->width->y) + 1);
+		ft_init_game(env);
+	}
 	else if (keycode == MORE || keycode == LESS)
 		ft_key_hook_alti(keycode, env->val);
 	else if (keycode == C)
 		ft_key_hook_color_mode(env->val);
 	else if (keycode == TABULATION)
 		ft_key_hook_proj_mode(env->val);
+	/*else if (keycode == Z || keycode == Q || keycode == Z || keycode == D)
+		ft_move_pers(keycode, env);*/
 	ft_expose_hook(env);
 	return (0);
 }

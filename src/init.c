@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 02:10:55 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/14 18:02:12 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 09:52:47 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	val_init(t_event *val)
 	val->y = 0;
 	val->alti = INIT_ALTI;
 	val->color_mode = REGULAR;
-	val->p_mod = CONIQUE;
+	val->p_mod = PARA;
+	val->p_mod = PARA;
+	val->game = LOOSE;
 }
 
 void	ft_init(t_fdf *env)
@@ -36,5 +38,4 @@ void	ft_init(t_fdf *env)
 	val_init(env->val);
 	ptr_init(&env->ptr);
 	env->stat_mode = REG_S;
-	env->val->p_mod = PARA;
 }

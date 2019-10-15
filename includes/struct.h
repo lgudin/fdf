@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 22:11:54 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/10 15:08:53 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 02:24:05 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ enum dir
     HAUT_GAUCHE,
     HAUT_DROIT,
 }   dir;
+
+enum stat_game
+{
+    LOOSE,
+    WIN,
+}   stat_game;
+
 enum stat_mode
 {
     REG_S,
@@ -54,6 +61,7 @@ typedef struct s_event // val
     int init_color;
     enum projection_mode p_mod;
     enum color_mode color_mode;
+    enum stat_game game;
 }               t_event;
 
 typedef struct s_rgb
@@ -65,8 +73,8 @@ typedef struct s_rgb
 
 typedef struct s_proj
 {
-    float x;
-    float y;
+    long x;
+    long y;
     t_rgb color;
 }               t_proj;
 
@@ -107,6 +115,8 @@ typedef struct  s_fdf // env
     t_rgb       lock_color;
     t_ptr       ptr;
     t_pt        **tab;
+    int      prev_play;
+    t_cursor player_c;
     enum stat_mode stat_mode;
     enum dir    dir;
 }               t_fdf;

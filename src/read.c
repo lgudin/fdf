@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 14:01:18 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/14 21:05:04 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 02:24:07 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char	***ft_str_ninja(int fd, t_cursor *width, char ***tabis)
 	{
 		tabis[y] = ft_strsplit(basic_map[y], ' ');
 		ft_strdel(&basic_map[y]);
-		printf("width y = %d, y = %d, len y = %d\n", width->y, y,  ft_tablen(tabis[y]));
 		if (width->y > 1 && y > 0 && ft_tablen(tabis[y]) != ft_tablen(tabis[y - 1]))
 			return (ft_error("tablen"));
 	}
