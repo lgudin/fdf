@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 09:35:30 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 12:22:22 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define ZOOM_SPEED 1.1
 # define ALTI_SPEED 0.1
 
-# define PLAYER_HEIGHT 5
+# define PLAYER_HEIGHT 3
 #define INIT_SIZE 1
 #define INIT_ALTI 1
 # define INIT_COLOR BLUE
@@ -104,42 +104,49 @@ void	ft_key_hook_alti(int keycode, t_event *val);
 void	ft_key_hook_zoom(int keycode, t_event *val);
 void	ft_key_hook_color_mode(t_event *val);
 /*
+** KEYHOOK_SETB.C
+*/
+void    ft_move_pers(int keycode, t_fdf *env);
+/*
 ** COLOR_SET.C
 */
-t_rgb       hex_to_rgb(int hex_color);
-int         set_color(t_pt tab, t_event *val);
-void	    dvd_color_set(t_fdf *env);
+t_rgb   hex_to_rgb(int hex_color);
+int     set_color(t_pt tab, t_event *val);
+void    dvd_color_set(t_fdf *env);
 /*
 ** COLOR_MODES.C
 */
-int         color_set_mode_map(float z);
-int         color_set_mode_dvd(float z);
-int         color_set_mode_vaporwave(float z);
+int     color_set_mode_map(float z);
+int     color_set_mode_dvd(float z);
+int     color_set_mode_vaporwave(float z);
 /*
 ** LOCK_SCREEN.C
 */
 
-int         lock_color_switch(void);
-void        ft_get_borne(t_fdf *env);
-int         ft_boing(t_fdf *env);
-void        ft_ca_bouge(t_fdf *env);
+int     lock_color_switch(void);
+void    ft_get_borne(t_fdf *env);
+int     ft_boing(t_fdf *env);
+void    ft_ca_bouge(t_fdf *env);
 /*
 ** INIT.C
 */
 void    ft_init(t_fdf *env);
 void	val_init(t_event *val);
 void	ptr_init(t_ptr *ptr);
-
+void    ft_init_game(t_fdf *env);
+/*
+** PLAYER_MOVE.C
+*/
 void    ft_move_right(t_fdf *env);
 void    ft_move_left(t_fdf *env);
 void    ft_move_down(t_fdf *env);
 void    ft_move_up(t_fdf *env);
-void    ft_init_game(t_fdf *env);
-void     ft_find_start(t_fdf *env);
+/*
+** PLAYER_CHECK_SET.C
+*/
 int     ft_is_win(t_fdf *env);
 void    ft_put_around(t_fdf *env);
 void    ft_del_around(t_fdf *env);
-int    ft_check_around(t_fdf *env);
-void	ft_move_pers(int keyhook, t_fdf *env);
+int     ft_check_around(t_fdf *env);
 void	ft_putwin(t_fdf *env);
 #endif
