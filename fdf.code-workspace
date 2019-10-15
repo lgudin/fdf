@@ -12,7 +12,8 @@
 			"algorithm": "c",
 			"ios": "cpp",
 			"fdf.h": "c",
-			"sstream": "c"
+			"sstream": "c",
+			"stdio.h": "c"
 		}
 	}
 }

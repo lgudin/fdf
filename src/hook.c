@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:23:31 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 09:52:44 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 15:58:30 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,51 +22,21 @@ int		ft_key_hook(int keycode, t_fdf *env)
 		ft_key_hook_set_lock(env);
 	else if (keycode == RIGHT_ARROW || keycode == LEFT_ARROW
 			|| keycode == DOWN_ARROW || keycode == UP_ARROW)
-		ft_move_pers(keycode, env);
-		//ft_key_hook_move(keycode, env);
+		ft_key_hook_move(keycode, env);
 	else if (keycode == I || keycode == O)
 		ft_key_hook_zoom(keycode, env->val);
 	else if (keycode == R)
-	{
-		val_init(env->val);
-		env->val->size = LARGEUR / ((env->width->x > env->width->y ?
-				env->width->x : env->width->y) + 1);
-		ft_init_game(env);
-	}
+		ft_key_hook_reset(env);
 	else if (keycode == MORE || keycode == LESS)
 		ft_key_hook_alti(keycode, env->val);
 	else if (keycode == C)
 		ft_key_hook_color_mode(env->val);
 	else if (keycode == TABULATION)
 		ft_key_hook_proj_mode(env->val);
-	/*else if (keycode == Z || keycode == Q || keycode == Z || keycode == D)
-		ft_move_pers(keycode, env);*/
+	else if (keycode == W || keycode == A || keycode == S || keycode == D)
+		ft_move_pers(keycode, env);
 	ft_expose_hook(env);
 	return (0);
-}
-
-void	ft_key_hook_set_regu_back(t_fdf *env)
-{
-	env->val->color_mode = REGULAR;
-	env->val->y += env->layout.y;
-	env->val->x += env->layout.x;
-	env->stat_mode = REG_S;
-}
-
-void	ft_key_hook_set_lock(t_fdf *env)
-{
-	if (env->stat_mode == REG_S)
-	{
-		env->layout.y = 0;
-		env->layout.x = 0;
-		env->val->color_mode = DVD;
-		dvd_color_set(env);
-		ft_get_borne(env);
-	}
-	env->stat_mode = LOCK_S;
-	ft_ca_bouge(env);
-	if (ft_boing(env))
-		dvd_color_set(env);
 }
 
 int		ft_expose_hook(t_fdf *env)
@@ -84,6 +54,6 @@ int		ft_expose_hook(t_fdf *env)
 	fill_image(env);
 	mlx_put_image_to_window(env->ptr.mlx, env->ptr.win, env->ptr.img, 0, 0);
 	mlx_destroy_image(env->ptr.mlx, env->ptr.img);
-	ft_puttxt(env);
+	ft_print_menu(env);
 	return (0);
 }

@@ -6,11 +6,24 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 11:07:49 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/14 16:53:17 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 17:45:50 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+void	ft_tabfree(char **str)
+{
+	int y;
+
+	y = 0;
+	while (str[y])
+	{
+		ft_strdel(&str[y]);
+		y++;
+	}
+	free(str);
+}
 
 char	*ft_strjoinfree(char const *s1, char const *s2)
 {
@@ -23,41 +36,42 @@ char	*ft_strjoinfree(char const *s1, char const *s2)
 	return (ft_strcat(str, s2));
 }
 
-char	*get_big_line(int fd)
-{
-	char	*line;
-	char	*big_line;
-	int		i;
-	int		gnl;
-
-	i = 0;
-	big_line = ft_strnew(2);
-	while (big_line[i++])
-	{
-		big_line[i] = 0;
-	}
-	line = NULL;
-	while ((gnl = get_next_line(fd, &line)) == 1)
-	{
-		big_line = ft_strjoinfree(big_line, line);
-		if (!(line_check(line)))
-			return (ft_error("Invalid char in file"));
-		big_line = ft_strcat(big_line, "\n");
-		free(line);
-	}
-	if (gnl == -1)
-		return (ft_error("GNL ret -1"));
-	return (big_line);
-}
-
 int		ft_tablen(char **tab)
 {
 	int y;
 
-	y = 0;
-	while (tab[y])
-		y++;
+	y = -1;
+	while (tab[++y])
+		y += 1 - 1;
 	return (y);
+}
+
+int		ft_ismax(char *str)
+{
+	char	*s;
+	int		i;
+	int		ret;
+
+	ret = 0;
+	i = -1;
+	if (ft_strlen(str) == (str[0] == '-' ? 11 : 10))
+	{
+		if (str[0] == '-')
+			s = ft_strdup("-2147483648");
+		else
+			s = ft_strdup("2147483647");
+		while (s[++i])
+		{
+			if (s[i] != str[i] && s[i] < str[i] && ret == 0)
+				ret = -1;
+			else if (s[i] > str[i] && ret == 0)
+				ret = 1;
+		}
+	}
+	ft_strdel(&str);
+	if (ret == -1)
+		return ((int)ft_error("Too big altitude value"));
+	return (1);
 }
 
 int		line_check(char *tab)

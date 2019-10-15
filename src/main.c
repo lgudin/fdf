@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:13:23 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 01:02:49 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 15:58:47 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		main(int ac, char **av)
 		return ((int)ft_error("proj_tab malloc"));
 	mlx_hook(env->ptr.win, 2, 3, ft_key_hook, env);
 	mlx_expose_hook(env->ptr.win, ft_expose_hook, env);
-	ft_puttxt(env);
+	ft_print_menu(env);
 	mlx_loop(env->ptr.mlx);
 	return (0);
 }

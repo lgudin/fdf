@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 12:22:22 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 19:03:12 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-//# include "../../libft/libft.h" // PC 42
-#include  "../../42_Projects/libft/libft.h" // PC Portable
+# include "../../libft/libft.h" // PC 42
+//#include  "../../42_Projects/libft/libft.h" // PC Portable
 
 # include "definekey.h"
 # include "colors.h"
@@ -47,11 +47,9 @@
 /*
 ** READ.C
 */
-char    ***ft_str_ninja(int fd, t_cursor *width, char ***tabis);
 t_pt    **ft_read_points(char *av, t_pt **tab, t_cursor *width);
 t_pt    **get_points(int fd, t_pt **tab, t_cursor *width);
-int		ft_get_alti(char *str);
-int		ft_ismax(char *str);
+int		check_alti(char ***tabis, t_cursor c);
 /*
 ** MAIN.C
 */
@@ -62,12 +60,19 @@ void	*ft_error(char *s);
 void    projection_tintintin(t_fdf *env);
 void    projection_para(t_fdf *env);
 /*
+** GET_LINES.C
+*/
+char    *get_big_line(int fd);
+char	***ft_get_tabis(int fd, t_cursor *width);
+char	**ft_get_basic_map(int fd, t_cursor *width);
+/*
 ** TOOL.C
 */
 char    *ft_strjoinfree(char const *s1, char const *s2);
-char    *get_big_line(int fd);
 int     ft_tablen(char **tab);
 int		line_check(char *tab);
+void	ft_tabfree(char **str);
+int		ft_ismax(char *str);
 /*
 ** BRESENHAM.C
 */
@@ -84,16 +89,17 @@ t_pt	**tab_malloc(t_pt **tab, t_cursor *width);
 */
 void    fill_image(t_fdf *env);
 void	ft_put_pixel(t_fdf *env, int x, int y,t_rgb color);
-void    set_square(t_cursor p_one, t_cursor p_two,t_fdf *env, int color);
-void	ft_puttxt(t_fdf *env);
+void	ft_print_menu(t_fdf *env);
+/*
+** PRINT_MAIN.c
+*/
 void	ft_lock_menu(t_fdf *env);
+void	ft_putwin(t_fdf *env);
 void	ft_regular_menu(t_fdf *env);
 /*
 ** HOOK.cC
 */
 int     ft_key_hook(int keycode, t_fdf *env);
-void    ft_key_hook_set_lock(t_fdf *env);
-void 	ft_key_hook_set_regu_back(t_fdf *env);
 int     ft_expose_hook(t_fdf *env);
 /*
 ** KEYHOOK_SET.C
@@ -106,7 +112,10 @@ void	ft_key_hook_color_mode(t_event *val);
 /*
 ** KEYHOOK_SETB.C
 */
+void    ft_key_hook_set_lock(t_fdf *env);
+void 	ft_key_hook_set_regu_back(t_fdf *env);
 void    ft_move_pers(int keycode, t_fdf *env);
+void	ft_key_hook_reset(t_fdf *env);
 /*
 ** COLOR_SET.C
 */
