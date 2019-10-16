@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 14:51:27 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/16 11:48:59 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/16 20:58:57 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ char	*get_big_line(int fd, t_cursor *width)
 			return (ft_error("Invalid char in file"));
 		big_line = ft_strcat(big_line, "\n");
 		free(line);
-		ft_putstr(big_line);
-		ft_putstr("----\n");
 		width->y++;
 	}
 	if (gnl == -1)

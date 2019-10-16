@@ -6,63 +6,58 @@
 #    By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 23:00:49 by lgudin            #+#    #+#              #
-#    Updated: 2019/10/15 20:51:19 by lgudin           ###   ########.fr        #
+#    Updated: 2019/10/16 19:49:00 by lgudin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror
 
-FRAMEWORK = -framework OpenGL\
-			-framework AppKit
+FRAMEWORK = -framework OpenGL -framework AppKit
 
-SRC_PATH = ./src
+SRC_PATH = ./src/
 OBJ_PATH = ./obj/
-INC_PATH = ./includes
+INC_PATH = ./includes/
 
 MLX = ./minilibx_macos/libmlx.a
 
-LIB_PATH = ../42__libft.a ../42_Projects/get_next_line/get_next_line.c ../42_Projects/libft/ft_putstrln.c #PC PORTABLE
-#LIB_PATH = ../42_Projects #PC 42
+LIB =../libft/libft.a
 
 NAME = fdf
 
-SRC_NAME = 	main.c\ 
-			bresenham_tarace.c\
-		   color_modes.c\
-		   color_set.c\
-		   hook.c\
-		   init.c\
-		   keyhook_set.c\
-		   keyhook_setb.c\
-		   lock_screen.c\
-		   mallocator.c\
-		   player_check_set.c\
-		   player_move.c\
-		   print_main.c\
-		   print.c\
-		   projection.c\
-		   read.c\
-		   tools.c\
+SRC_NAME =	main.c\
+			bresenham.c\
+			color_modes.c\
+			color_set.c\
+			hook.c\
+			init.c\
+			keyhook_set.c\
+			keyhook_setb.c\
+			lock_screen.c\
+			mallocator.c\
+			player_check_set.c\
+			player_move.c\
+			print_main.c\
+			print.c\
+			projection.c\
+			read.c\
+			tools.c\
 
-TMP = tmp.txt
-
-OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ_NAME = $(SRC_NAME:.c=.o)\
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
-INC = $(addprefix -I, $(INC_PATH))
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 	@echo "\033[33mTenez ! Attention les .o sont encore chauds !\033[0m"
-	$(CC) $(CFLAGS) $(MLX) $(LIB_PATH) $(OBJ) -o $(NAME) $(FRAMEWORK)
+	@$(CC) $(CFLAGS) $(MLX) $(LIB) $(OBJ) -o $(NAME) $(FRAMEWORK)
 	@echo "\033[32mAvec ceci ? un executable ? Emballé c'est pesé !\033[0m"
 
-$(OBJ_PATH)%.o : $(SRC_PATH)%.c
+$(OBJ_PATH)%.o : $(SRC_PATH)%.c $(HEAD)
 	@mkdir -p $(OBJ_PATH)
-	@$(CC) $(CFLAGS) $(INC) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
 	@rm -rf $(OBJ_PATH)
@@ -73,7 +68,7 @@ fclean : clean
 
 re : fclean all
 
-.PHONY: all clean
+.PHONY: all clean fclean re
 
 segfault:
 	@echo "[1]    24109 segmentation fault"

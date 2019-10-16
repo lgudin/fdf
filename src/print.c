@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 13:55:38 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 15:42:38 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/16 16:07:14 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,12 @@ void	fill_image(t_fdf *env)
 
 void	ft_print_menu(t_fdf *env)
 {
+	
 	if (env->stat_mode == LOCK_S)
 		ft_lock_menu(env);
-	else
+	if (env->val->color_mode == LABY)
+		ft_game_menu(env);
+	if (env->stat_mode != LOCK_S && env->val->color_mode != LABY)
 		ft_regular_menu(env);
 	if (env->val->game == WIN && env->stat_mode != LOCK_S)
 		ft_putwin(env);

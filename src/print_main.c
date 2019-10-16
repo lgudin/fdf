@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:40:51 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 16:05:38 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/16 19:07:25 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,20 @@ void	ft_regular_menu(t_fdf *env)
 	" -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - ");
 	mlx_string_put(env->ptr.mlx, env->ptr.win, 530, 65, WHITE,
 	" -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -");
+}
+
+void	ft_game_menu(t_fdf *env)
+{
+	mlx_string_put(env->ptr.mlx, env->ptr.win, 1, 01, WHITE,
+	(" -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -"));
+	mlx_string_put(env->ptr.mlx, env->ptr.win, 530, 01, WHITE,
+	"  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -");
+	mlx_string_put(env->ptr.mlx, env->ptr.win, 1, 17, WHITE,
+	"| Game mode activated, press R to leave it or to reset");
+	mlx_string_put(env->ptr.mlx, env->ptr.win, 530, 17, WHITE,
+	" the game |  Move Player : W / A / S / D  |  Projection mod : TAB  |");
+	mlx_string_put(env->ptr.mlx, env->ptr.win, 1, 32, WHITE,
+	"-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - ");
+	mlx_string_put(env->ptr.mlx, env->ptr.win, 530, 32, WHITE,
+	" -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -");
 }

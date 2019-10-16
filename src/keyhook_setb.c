@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 12:12:21 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 22:13:27 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/16 19:30:57 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ void	ft_move_pers(int keycode, t_fdf *env)
 
 void	ft_key_hook_reset(t_fdf *env)
 {
-	if (env->val->game == WIN)
-		ft_init_game(env);
+	val_init(env->val);
+	ft_del_around(env);
+	ft_init_game(env);
 }
 
 void	ft_key_hook_set_regu_back(t_fdf *env)

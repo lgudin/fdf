@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:23:31 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 15:58:30 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/16 16:06:50 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_key_hook(int keycode, t_fdf *env)
 		ft_key_hook_reset(env);
 	else if (keycode == MORE || keycode == LESS)
 		ft_key_hook_alti(keycode, env->val);
-	else if (keycode == C)
+	else if (keycode == C && env->val->color_mode != LABY)
 		ft_key_hook_color_mode(env->val);
 	else if (keycode == TABULATION)
 		ft_key_hook_proj_mode(env->val);
