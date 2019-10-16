@@ -6,30 +6,40 @@
 #    By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 23:00:49 by lgudin            #+#    #+#              #
-#    Updated: 2019/10/15 12:02:14 by lgudin           ###   ########.fr        #
+#    Updated: 2019/10/15 20:51:19 by lgudin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror
 
-SRC_PATH = ./
+FRAMEWORK = -framework OpenGL\
+			-framework AppKit
+
+SRC_PATH = ./src
 OBJ_PATH = ./obj/
 INC_PATH = ./includes
 
+MLX = ./minilibx_macos/libmlx.a
+
+LIB_PATH = ../42__libft.a ../42_Projects/get_next_line/get_next_line.c ../42_Projects/libft/ft_putstrln.c #PC PORTABLE
+#LIB_PATH = ../42_Projects #PC 42
+
 NAME = fdf
 
-SRC_NAME = main.c\
-		   bresenham_tarace.c\
+SRC_NAME = 	main.c\ 
+			bresenham_tarace.c\
 		   color_modes.c\
 		   color_set.c\
 		   hook.c\
 		   init.c\
 		   keyhook_set.c\
+		   keyhook_setb.c\
 		   lock_screen.c\
-		   laby_mode\
-		   player_move.c\
 		   mallocator.c\
+		   player_check_set.c\
+		   player_move.c\
+		   print_main.c\
 		   print.c\
 		   projection.c\
 		   read.c\
@@ -37,8 +47,7 @@ SRC_NAME = main.c\
 
 TMP = tmp.txt
 
-OBJ_NAME = $(SRC_NAME:.c=.o)\
-			../../libft/libft.a\
+OBJ_NAME = $(SRC_NAME:.c=.o)
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
@@ -48,7 +57,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	@echo "\033[33mTenez ! Attention les .o sont encore chauds !\033[0m"
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(MLX) $(LIB_PATH) $(OBJ) -o $(NAME) $(FRAMEWORK)
 	@echo "\033[32mAvec ceci ? un executable ? Emballé c'est pesé !\033[0m"
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c

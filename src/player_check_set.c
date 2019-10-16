@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 23:04:47 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 15:39:55 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 22:07:02 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void		ft_del_around(t_fdf *env)
 
 void		ft_put_around(t_fdf *env)
 {
-	env->tab[env->player_c.y][env->player_c.x].z = PLAYER_HEIGHT;
-	env->tab[env->player_c.y][env->player_c.x - 1].z = PLAYER_HEIGHT;
-	env->tab[env->player_c.y + 1][env->player_c.x].z = PLAYER_HEIGHT;
-	env->tab[env->player_c.y + 1][env->player_c.x - 1].z = PLAYER_HEIGHT;
+	env->tab[env->player_c.y][env->player_c.x].z = env->val->player_size;
+	env->tab[env->player_c.y][env->player_c.x - 1].z = env->val->player_size;
+	env->tab[env->player_c.y + 1][env->player_c.x].z = env->val->player_size;
+	env->tab[env->player_c.y + 1][env->player_c.x - 1].z = env->val->player_size;
 }

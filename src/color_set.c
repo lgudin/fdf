@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 18:06:54 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/11 18:38:12 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 22:12:05 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int		set_color(t_pt tab, t_event *val)
 		return (color_set_mode_vaporwave(tab.z));
 	else if (val->color_mode == DVD)
 		return (color_set_mode_dvd(tab.z));
+	else if (val->color_mode == LABY)
+		return (color_set_mode_laby(tab.z, val->player_size));
 	ft_putstrln("ERROR : mode de couleur non implementé dans color_set.c");
 	return (WHITE);
 }

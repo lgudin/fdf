@@ -6,15 +6,18 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 12:12:21 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 16:20:55 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 22:13:27 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 void	ft_move_pers(int keycode, t_fdf *env)
-{	if (env->width->x > 3 && env->width->y > 3)
+{	
+	if (env->width->x > 3 && env->width->y > 3)
 	{
+		ft_player_anim(env);
+		env->val->color_mode = LABY;
 		if (env->val->game != WIN)
 		{
 			if (keycode == W)

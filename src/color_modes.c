@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 02:13:06 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/14 18:21:48 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/15 22:15:54 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,14 @@ int	color_set_mode_dvd(float z)
 	else
 		return (-1);
 	return ((int)ft_error("DVD Color failed"));
+}
+
+int	color_set_mode_laby(float z, float player_size)
+{
+	if (z == 0)
+		return (PURPLE);
+	else if (z == player_size)
+		return (VAPOR_PINK);
+	else
+		return (LIGHT_BLUE);
 }

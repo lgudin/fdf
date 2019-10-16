@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 02:10:55 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 16:22:48 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/16 10:34:19 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	ft_init(t_fdf *env)
 	ptr_init(&env->ptr);
 	ft_init_game(env);
 	env->stat_mode = REG_S;
+	env->width->y = 0;
+	env->width->x = 0;
 }
 
 void	ft_init_game(t_fdf *env)

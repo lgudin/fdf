@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 22:11:54 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 02:24:05 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/16 11:50:32 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ enum color_mode
     VAPORWAVE,
     LAST,
     DVD,
+    LABY,
 }       color_mode;
 
 typedef struct s_event // val 
@@ -59,6 +60,7 @@ typedef struct s_event // val
     float alti;
     float angle;
     int init_color;
+    float player_size;
     enum projection_mode p_mod;
     enum color_mode color_mode;
     enum stat_game game;

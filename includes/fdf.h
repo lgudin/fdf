@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 12:27:12 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 19:03:12 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/16 10:37:31 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-# include "../../libft/libft.h" // PC 42
-//#include  "../../42_Projects/libft/libft.h" // PC Portable
+//# include "../../libft/libft.h" // PC 42
+#include  "../../42_Projects/libft/libft.h" // PC Portable
 
 # include "definekey.h"
 # include "colors.h"
@@ -62,7 +62,7 @@ void    projection_para(t_fdf *env);
 /*
 ** GET_LINES.C
 */
-char    *get_big_line(int fd);
+char	*get_big_line(int fd, t_cursor *width);
 char	***ft_get_tabis(int fd, t_cursor *width);
 char	**ft_get_basic_map(int fd, t_cursor *width);
 /*
@@ -128,6 +128,7 @@ void    dvd_color_set(t_fdf *env);
 int     color_set_mode_map(float z);
 int     color_set_mode_dvd(float z);
 int     color_set_mode_vaporwave(float z);
+int	    color_set_mode_laby(float z, float player_size);
 /*
 ** LOCK_SCREEN.C
 */
@@ -150,6 +151,7 @@ void    ft_move_right(t_fdf *env);
 void    ft_move_left(t_fdf *env);
 void    ft_move_down(t_fdf *env);
 void    ft_move_up(t_fdf *env);
+void	ft_player_anim(t_fdf *env);
 /*
 ** PLAYER_CHECK_SET.C
 */
