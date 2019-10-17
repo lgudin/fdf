@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:40:51 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/16 22:03:17 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 14:59:34 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	ft_regular_menu(t_fdf *env)
 	"|-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - ");
 	mlx_string_put(env->ptr.mlx, env->ptr.win, 530, 32, WHITE,
 	" -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - |");
-	mlx_string_put(env->ptr.mlx, env->ptr.win, 380, 47,
-	WHITE, ft_itoa(env->val->color_mode));
+	/*mlx_string_put(env->ptr.mlx, env->ptr.win, 380, 47,
+	WHITE, ft_itoa(env->val->color_mode));*/
 	mlx_string_put(env->ptr.mlx, env->ptr.win, 1, 47, WHITE,
 	"| Altitude : + and - |  Current mod:    |  Press U to ");
 	mlx_string_put(env->ptr.mlx, env->ptr.win, 1090, 47, WHITE,

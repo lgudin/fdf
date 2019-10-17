@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 14:01:18 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 18:12:48 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 19:42:08 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ t_pt	**get_points(int fd, t_pt **tab, t_cursor *width)
 			tab[c.y][c.x].y = c.y;
 			tab[c.y][c.x].z = ft_atoi(tabis[c.y][c.x]);
 			tab[c.y][c.x].color = INIT_COLOR;
+			free(tabis[c.y][c.x]);
 		}
-		ft_strdel(tabis[c.y]);
 	}
+	ft_strdel(tabis[c.y]);
 	free(tabis);
+	tabis = NULL;
 	return (tab);
 }
 

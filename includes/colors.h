@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 17:08:05 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 12:18:49 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 15:08:44 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,4 @@
 # define OLD_PURPLE 0x9D72FF
 # define OLD_ORANGE 0xFF8B8B
 
-#endif !COLORS_H
+#endif

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:46:32 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 14:15:15 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 15:08:31 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 
 # include "definekey.h"
 # include "colors.h"
-# include "struct.h"
 # include "enum.h"
+# include "struct.h"
 
 /*
 ** READ.C

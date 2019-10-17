@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 22:11:54 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 14:24:51 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 15:09:00 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ typedef struct	s_event
 	float					angle;
 	int						init_color;
 	float					player_size;
-	enum projection_mode	p_mod;
-	enum color_mode			color_mode;
-	enum stat_game			game;
+	enum e_proj_mode	p_mod;
+	enum e_color_mode		color_mode;
+	enum e_stat_game		game;
 }				t_event;
 
 typedef struct	s_rgb
@@ -80,8 +80,8 @@ typedef struct	s_fdf
 	t_ptr					ptr;
 	t_pt					**tab;
 	int						prev_play;
-	enum stat_mode			stat_mode;
-	enum dir				dir;
+	enum e_stat_mode		stat_mode;
+	enum e_dir				dir;
 }				t_fdf;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 14:51:27 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 14:31:59 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 20:02:50 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char	**ft_get_basic_map(int fd, t_cursor *width)
 		return (ft_error("bigline bug"));
 	}
 	basic_map = ft_strsplit(big_line, '\n');
-	ft_strdel(&big_line);
+	free(big_line);
+	big_line = NULL;
 	if (width->y == ft_tablen(basic_map))
 		return (basic_map);
 	ft_tabfree(basic_map);
@@ -32,7 +33,7 @@ char	**ft_get_basic_map(int fd, t_cursor *width)
 
 char	***ft_get_tabis(int fd, t_cursor *width)
 {
-	char	***tabis;
+    char    ***tabis;
 	char	**basic_map;
 	int		y;
 
@@ -50,8 +51,10 @@ char	***ft_get_tabis(int fd, t_cursor *width)
 			ft_tabfree(basic_map);
 			return (ft_error("tablen"));
 		}
+		free(basic_map[y]);
 	}
-	ft_tabfree(basic_map);
+	free(basic_map[y]);
+	free(basic_map);
 	width->x = ft_tablen(tabis[0]);
 	return (tabis);
 }
@@ -64,18 +67,19 @@ char	*get_big_line(int fd, t_cursor *width)
 	int		gnl;
 
 	i = 0;
-	big_line = ft_strnew(2);
+	big_line = ft_strnew(1);
 	while (big_line[i++])
-	{
 		big_line[i] = 0;
-	}
 	line = NULL;
 	while ((gnl = get_next_line(fd, &line)) == 1)
 	{
 		big_line = ft_strjoinfree(big_line, line);
 		if (!(line_check(line)))
+		{
+			free(line);
 			return (ft_error("Invalid char in file"));
-		big_line = ft_strcat(big_line, "\n");
+		}
+		big_line = ft_strjoinfree(big_line, "\n");
 		free(line);
 		width->y++;
 	}

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 11:07:49 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 17:45:50 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 19:01:38 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_tabfree(char **str)
 		ft_strdel(&str[y]);
 		y++;
 	}
+	ft_strdel(&str[y]);
 	free(str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:23:38 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 12:27:58 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 15:05:41 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,26 @@ enum	e_dir
 	BAS_DROIT,
 	HAUT_GAUCHE,
 	HAUT_DROIT,
-}	dir;
+};
 
 enum	e_stat_game
 {
 	LOOSE,
 	WIN,
-}	stat_game;
+};
 
 enum	e_stat_mode
 {
 	REG_S,
 	LOCK_S,
-}	stat_mode;
+};
 
-enum	e_projection_mode
+enum	e_proj_mode
 {
 	PARA,
 	CONIQUE,
 	LAST_P,
-}	proj_mode;
+};
 
 enum	e_color_mode
 {
@@ -50,6 +50,6 @@ enum	e_color_mode
 	LAST,
 	DVD,
 	LABY,
-}	color_mode;
+};
 
-#endif !ENUM_H
+#endif

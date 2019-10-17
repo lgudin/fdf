@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:13:23 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 15:58:47 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 19:08:22 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_error(char *s)
 int		main(int ac, char **av)
 {
 	t_fdf	*env;
-
+	sleep(5);
 	if (ac < 2 || ac > 3)
 		return ((int)ft_error(" Usages : ./fdf [Source_file]"));
 	if (!(env = (t_fdf*)ft_memalloc(sizeof(t_fdf))))
