@@ -6,7 +6,7 @@
 #    By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 23:00:49 by lgudin            #+#    #+#              #
-#    Updated: 2019/10/16 19:49:00 by lgudin           ###   ########.fr        #
+#    Updated: 2019/10/16 22:00:35 by lgudin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INC_PATH = ./includes/
 
 MLX = ./minilibx_macos/libmlx.a
 
-LIB =../libft/libft.a
+LIB =./libft/libft.a
 
 NAME = fdf
 
@@ -42,6 +42,7 @@ SRC_NAME =	main.c\
 			projection.c\
 			read.c\
 			tools.c\
+			get_lines.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)\
 
@@ -51,6 +52,7 @@ OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 all : $(NAME)
 
 $(NAME) : $(OBJ)
+	@cd ./libft;make;
 	@echo "\033[33mTenez ! Attention les .o sont encore chauds !\033[0m"
 	@$(CC) $(CFLAGS) $(MLX) $(LIB) $(OBJ) -o $(NAME) $(FRAMEWORK)
 	@echo "\033[32mAvec ceci ? un executable ? Emballé c'est pesé !\033[0m"

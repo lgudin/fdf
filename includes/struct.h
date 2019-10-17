@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 22:11:54 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/16 20:59:55 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/16 22:05:52 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,15 +113,15 @@ typedef struct  s_fdf // env
 	t_cursor    *width;
 	t_cursor    layout;
 	t_cursor    borne;
+    t_cursor player_c;
 	t_cursor    borne_min;
 	t_rgb       lock_color;
 	t_ptr       ptr;
 	t_pt        **tab;
 	int      prev_play;
-	t_cursor player_c;
 	enum stat_mode stat_mode;
 	enum dir    dir;
 }               t_fdf;
 
 
-#endif // !DEFINE_STRUCT_H
+#endif

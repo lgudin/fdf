@@ -36,8 +36,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-# include "../../libft/libft.h" // PC 42
-//#include  "../../42_Projects/libft/libft.h" // PC Portable
+#include  "../libft/libft.h" // PC Portable
 
 # include "definekey.h"
 # include "colors.h"
