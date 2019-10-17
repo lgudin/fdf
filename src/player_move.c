@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 12:06:39 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/15 23:00:20 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 14:31:35 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ void	ft_player_anim(t_fdf *env)
 	if (env->val->player_size >= 3)
 		store = 1;
 	if (env->val->player_size < 3 && store == 0)
-		env->val->player_size+= 0.3;
+		env->val->player_size += 0.3;
 	else
-		env->val->player_size-= 0.3;
+		env->val->player_size -= 0.3;
 	if (env->val->player_size < 2)
 		store = 0;
 }

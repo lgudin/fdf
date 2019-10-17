@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 02:10:55 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/16 19:10:03 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 14:29:17 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_init(t_fdf *env)
 
 void	ft_init_game(t_fdf *env)
 {
-	env ->val->game = LOOSE;
+	env->val->game = LOOSE;
 	env->player_c.y = 0;
 	env->player_c.x = 0;
 	while (!(ft_check_around(env) == 1) && env->player_c.x < env->width->x)

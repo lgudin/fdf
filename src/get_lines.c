@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 14:51:27 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/16 20:58:57 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 14:31:59 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**ft_get_basic_map(int fd, t_cursor *width)
 
 char	***ft_get_tabis(int fd, t_cursor *width)
 {
-    char    ***tabis;
+	char	***tabis;
 	char	**basic_map;
 	int		y;
 
@@ -83,4 +83,3 @@ char	*get_big_line(int fd, t_cursor *width)
 		return (ft_error("GNL ret -1"));
 	return (big_line);
 }
-

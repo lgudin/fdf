@@ -1,18 +1,18 @@
 /* ************************************************************************** */
-/*                   */
-/*              :::   ::::::::   */
-/*   fdf.h             :+:   :+: :+:   */
-/*             +:+ +:+   +:+  */
-/*   By: lgudin <lgudin@student.42.fr>     +#+  +:+    +#+  */
-/*            +#+#+#+#+#+   +#+     */
-/*   Created: 2019/10/02 12:27:12 by lgudin   #+# #+#    */
-/*   Updated: 2019/10/16 21:11:12 by lgudin           ###   ########.fr       */
-/*                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/17 12:46:32 by lgudin            #+#    #+#             */
+/*   Updated: 2019/10/17 14:15:15 by lgudin           ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 
-# define FDF_H 
+# define FDF_H
 
 # define FALSE 0
 # define TRUE 1
@@ -30,25 +30,26 @@
 # define INIT_COLOR BLUE
 
 # include <math.h>
-# include "../minilibx_macos/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
 
-#include  "../libft/libft.h" // PC Portable
+# include "../minilibx_macos/mlx.h"
+# include "../libft/libft.h"
 
 # include "definekey.h"
 # include "colors.h"
 # include "struct.h"
+# include "enum.h"
 
 /*
 ** READ.C
 */
 
-t_pt **ft_read_points(char *av, t_pt **tab, t_cursor *width);
-t_pt **get_points(int fd, t_pt **tab, t_cursor *width);
-int	check_alti(char ***tabis, t_cursor c);
+t_pt	**ft_read_points(char *av, t_pt **tab, t_cursor *width);
+t_pt	**get_points(int fd, t_pt **tab, t_cursor *width);
+int		check_alti(char ***tabis, t_cursor c);
 
 /*
 ** MAIN.C
@@ -76,32 +77,32 @@ char	**ft_get_basic_map(int fd, t_cursor *width);
 */
 
 char	*ft_strjoinfree(char const *s1, char const *s2);
-int 	ft_tablen(char **tab);
-int	line_check(char *tab);
+int		ft_tablen(char **tab);
+int		line_check(char *tab);
 void	ft_tabfree(char **str);
-int	ft_ismax(char *str);
+int		ft_ismax(char *str);
 
 /*
- ** BRESENHAM.C
- */
+** BRESENHAM.C
+*/
 
-int	draw_line(t_fdf *env, t_proj point_zero, t_proj point_one);
-int	another_function(t_fdf *env, t_proj point_zero, t_proj point_one);
-int	function(t_fdf *env, t_proj point_zero, t_proj point_one);
+int		draw_line(t_fdf *env, t_proj point_zero, t_proj point_one);
+int		another_function(t_fdf *env, t_proj point_zero, t_proj point_one);
+int		function(t_fdf *env, t_proj point_zero, t_proj point_one);
 
 /*
- ** MALLOCATOR.C
- */
+** MALLOCATOR.C
+*/
 
 t_proj	**proj_tab_malloc(t_proj **tab, t_cursor *width);
 t_pt	**tab_malloc(t_pt **tab, t_cursor *width);
 
 /*
 ** PRINT.C
- */
+*/
 
 void	fill_image(t_fdf *env);
-void	ft_put_pixel(t_fdf *env, int x, int y,t_rgb color);
+void	ft_put_pixel(t_fdf *env, int x, int y, t_rgb color);
 void	ft_print_menu(t_fdf *env);
 
 /*
@@ -117,8 +118,8 @@ void	ft_game_menu(t_fdf *env);
 ** HOOK.cC
 */
 
-int	ft_key_hook(int keycode, t_fdf *env);
-int	ft_expose_hook(t_fdf *env);
+int		ft_key_hook(int keycode, t_fdf *env);
+int		ft_expose_hook(t_fdf *env);
 
 /*
 ** KEYHOOK_SET.C
@@ -135,7 +136,7 @@ void	ft_key_hook_color_mode(t_event *val);
 */
 
 void	ft_key_hook_set_lock(t_fdf *env);
-void 	ft_key_hook_set_regu_back(t_fdf *env);
+void	ft_key_hook_set_regu_back(t_fdf *env);
 void	ft_move_pers(int keycode, t_fdf *env);
 void	ft_key_hook_reset(t_fdf *env);
 
@@ -144,25 +145,25 @@ void	ft_key_hook_reset(t_fdf *env);
 */
 
 t_rgb	hex_to_rgb(int hex_color);
-int 	set_color(t_pt tab, t_event *val);
+int		set_color(t_pt tab, t_event *val);
 void	dvd_color_set(t_fdf *env);
 
 /*
 ** COLOR_MODES.C
 */
 
-int	color_set_mode_map(float z);
-int	color_set_mode_dvd(float z);
-int	color_set_mode_vaporwave(float z);
-int	color_set_mode_laby(float z, float player_size);
+int		color_set_mode_map(float z);
+int		color_set_mode_dvd(float z);
+int		color_set_mode_vaporwave(float z);
+int		color_set_mode_laby(float z, float player_size);
 
 /*
 ** LOCK_SCREEN.C
 */
 
-int	lock_color_switch(void);
+int		lock_color_switch(void);
 void	ft_get_borne(t_fdf *env);
-int	ft_boing(t_fdf *env);
+int		ft_boing(t_fdf *env);
 void	ft_ca_bouge(t_fdf *env);
 
 /*
@@ -188,10 +189,10 @@ void	ft_player_anim(t_fdf *env);
 ** PLAYER_CHECK_SET.C
 */
 
-int 	ft_is_win(t_fdf *env);
+int		ft_is_win(t_fdf *env);
 void	ft_put_around(t_fdf *env);
 void	ft_del_around(t_fdf *env);
-int	ft_check_around(t_fdf *env);
+int		ft_check_around(t_fdf *env);
 void	ft_putwin(t_fdf *env);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 23:00:49 by lgudin            #+#    #+#              #
-#    Updated: 2019/10/16 22:00:35 by lgudin           ###   ########.fr        #
+#    Updated: 2019/10/17 11:19:52 by lgudin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,10 +52,11 @@ OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 all : $(NAME)
 
 $(NAME) : $(OBJ)
+	@echo "\033[31mUne libft ? Attendez je vais voir si ya des news\033[0m"
 	@cd ./libft;make;
-	@echo "\033[33mTenez ! Attention les .o sont encore chauds !\033[0m"
+	@echo "\033[33mCa compile attendez..   Ahh ! Tenez ! Attention les .o sont encore chauds !\033[0m"
 	@$(CC) $(CFLAGS) $(MLX) $(LIB) $(OBJ) -o $(NAME) $(FRAMEWORK)
-	@echo "\033[32mAvec ceci ? un executable ? Emballé c'est pesé !\033[0m"
+	@echo "\033[32mAvec ceci ? un executable ? et un $(NAME) pour la 'tite dame .. Emballé c'est pesé !\033[0m"
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c $(HEAD)
 	@mkdir -p $(OBJ_PATH)

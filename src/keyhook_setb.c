@@ -6,14 +6,14 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 12:12:21 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/16 19:30:57 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 14:30:32 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 void	ft_move_pers(int keycode, t_fdf *env)
-{	
+{
 	if (env->width->x > 3 && env->width->y > 3)
 	{
 		ft_player_anim(env);

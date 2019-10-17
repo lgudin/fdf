@@ -6,11 +6,11 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:27:32 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/16 21:00:07 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/17 12:19:25 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef DEFINEKEY_H
+#ifndef DEFINEKEY_H
 # define DEFINEKEY_H
 
 # define ESC 53
@@ -60,7 +60,7 @@
 # define DOWN_ARROW 125
 # define UP_ARROW 126
 
-#define SPACE_BAR 49
-#define TABULATION 48
+# define SPACE_BAR 49
+# define TABULATION 48
 
 #endif
