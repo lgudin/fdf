@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:46:32 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/18 09:19:05 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 12:15:05 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define PLAYER_HEIGHT 3
 # define INIT_SIZE 1
-# define INIT_ALTI 1
+# define INIT_ALTI 0.2
 # define INIT_COLOR BLUE
 
 # include <math.h>
@@ -36,7 +36,7 @@
 # include <unistd.h>
 
 # include "../minilibx_macos/mlx.h"
-# include "../.libft/libft.h"
+# include "../libft/libft.h"
 
 # include "definekey.h"
 # include "colors.h"
