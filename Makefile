@@ -6,7 +6,7 @@
 #    By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 23:00:49 by lgudin            #+#    #+#              #
-#    Updated: 2019/10/17 11:19:52 by lgudin           ###   ########.fr        #
+#    Updated: 2019/10/18 09:30:01 by lgudin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INC_PATH = ./includes/
 
 MLX = ./minilibx_macos/libmlx.a
 
-LIB =./libft/libft.a
+LIB =./.libft/libft.a
 
 NAME = fdf
 
@@ -53,9 +53,9 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	@echo "\033[31mUne libft ? Attendez je vais voir si ya des news\033[0m"
-	@cd ./libft;make;
+	@cd ./.libft;make;
 	@echo "\033[33mCa compile attendez..   Ahh ! Tenez ! Attention les .o sont encore chauds !\033[0m"
-	@$(CC) $(CFLAGS) $(MLX) $(LIB) $(OBJ) -o $(NAME) $(FRAMEWORK)
+	@$(CC) $(CFLAGS) $(MLX) $(LIB) $(OBJ) -o $(NAME) $(FRAMEWORK) -fsanitize=address
 	@echo "\033[32mAvec ceci ? un executable ? et un $(NAME) pour la 'tite dame .. Emballé c'est pesé !\033[0m"
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c $(HEAD)

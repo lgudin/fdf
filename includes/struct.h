@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 22:11:54 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 15:09:00 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/18 09:25:10 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct	s_event
 	float					angle;
 	int						init_color;
 	float					player_size;
-	enum e_proj_mode	p_mod;
+	enum e_proj_mode		p_mod;
 	enum e_color_mode		color_mode;
 	enum e_stat_game		game;
 }				t_event;
