@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 15:40:51 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/21 17:17:03 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 23:02:02 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_regular_menu(t_fdf *env)
 	mlx_string_put(env->ptr.mlx, env->ptr.win, 1, 47, WHITE,
 	"|     Altitude : + and -     |      Press U to unlock ");
 	mlx_string_put(env->ptr.mlx, env->ptr.win, 1090, 47, WHITE,
-	env->val->p_mod == CONIQUE ? "Conique" : "Parralelle");
+	env->val->p_mod == CONIQUE ? "Isometric" : "Parralelle");
 	mlx_string_put(env->ptr.mlx, env->ptr.win, 530, 47, WHITE,
 	"      |   Reset : R  |   Exit : ESC  |  Current mod :                |");
 	mlx_string_put(env->ptr.mlx, env->ptr.win, 1, 65, WHITE,

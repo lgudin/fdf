@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 14:51:27 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/21 17:20:33 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 22:34:35 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,16 @@ char	*get_big_line(int fd, t_cursor *width)
 	if (gnl == -1)
 		return (ft_error("GNL ret -1"));
 	return (big_line);
+}
+
+int		ft_strlenb(char *s)
+{
+	int i;
+
+	i = 0;
+	if (s[i] == '-')
+		i++;
+	while (s[i] && (s[i] >= '0' && s[i] >= '9'))
+		i++;
+	return (i);
 }

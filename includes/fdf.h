@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:46:32 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/21 17:26:35 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 22:14:02 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	*get_big_line(int fd, t_cursor *width);
 char	***ft_get_tabis(int fd, t_cursor *width);
 char	**ft_get_basic_map(int fd, t_cursor *width);
 t_pt	**set_tab(t_pt **tab, t_cursor *width, char ***tabis);
+int		ft_strlenb(char *s);
 
 /*
 ** TOOL.C
