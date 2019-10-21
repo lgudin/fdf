@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 14:01:18 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/21 17:23:05 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 19:23:30 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,40 @@ t_pt	**set_tab(t_pt **tab, t_cursor *width, char ***tabis)
 			tab[c.y][c.x].y = c.y;
 			tab[c.y][c.x].z = ft_atoi(tabis[c.y][c.x]);
 			tab[c.y][c.x].color = INIT_COLOR;
-			ft_strdel(&tabis[c.y][c.x]);
+			if (tabis[c.y][c.x] != NULL)
+				ft_strdel(&tabis[c.y][c.x]);
 		}
-		ft_strdel(&tabis[c.y][c.x]);
-		free(tabis[c.y]);
+		if (tabis[c.y][c.x] != NULL)
+			ft_strdel(&tabis[c.y][c.x]);
+		if (tabis[c.y]!= NULL)
+		{
+			free(tabis[c.y]);
+			tabis[c.y] = NULL;
+		}
 	}
-	free(tabis[c.y]);
-	free(tabis);
-	tabis = NULL;
+	if (tabis[c.y] != NULL)
+		free(tabis[c.y]);
+	if (tabis != NULL)
+	{
+		free(tabis);
+		tabis = NULL;
+	}
 	return (tab);
 }
 
 int		check_alti(char ***tabis, t_cursor c)
 {
+	if ((tabis[c.y][c.x][0] == '-' &&
+	ft_strlen(tabis[c.y][c.x]) > 7) ||
+	ft_strlen(tabis[c.y][c.x]) > 6)
+	{
+		ft_putstr("HEYA");
+		return ((int)ft_error("Too big/small short int"));
+	}
 	if (((tabis[c.y][c.x][0] == '-' &&
-	ft_strlen(tabis[c.y][c.x]) >= 11) ||
-	ft_strlen(tabis[c.y][c.x]) >= 10) &&
+	ft_strlen(tabis[c.y][c.x]) == 6) ||
+	ft_strlen(tabis[c.y][c.x]) == 5) &&
 	(ft_ismax(tabis[c.y][c.x]) == 0))
-		return ((int)ft_error("Too big/mall int"));
+		return ((int)ft_error("Too big/mall short int"));
 	return (1);
 }

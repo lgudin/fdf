@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 22:19:26 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 14:31:11 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 18:40:59 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ void	projection_tintintin(t_fdf *env)
 		{
 			env->proj[y][x].x = (((env->tab[y][x].x * env->val->size)
 						- env->tab[y][x].y * env->val->size) * cos(0.523599))
-							+ env->val->x + env->val->size;
+							+ env->val->x - env->val->size +  LARGEUR / 2;
 			env->proj[y][x].y = (-((env->tab[y][x].z * env->val->size)
 						* env->val->alti) + ((env->tab[y][x].x
 								+ env->tab[y][x].y) * env->val->size)
 									* sin(0.523599)) + env->val->y
-										+ env->val->size;
+										+ HAUTEUR / (HAUTEUR / 100) ;
 			env->proj[y][x].color = hex_to_rgb(set_color(env->tab[y][x],
 						env->val));
 			x++;

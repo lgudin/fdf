@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 11:07:49 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/21 14:04:46 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 19:14:10 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ int		ft_ismax(char *str)
 
 	ret = 0;
 	i = -1;
-	if (ft_strlen(str) == (str[0] == '-' ? 11 : 10))
+	if (ft_strlen(str) == (str[0] == '-' ? 6 : 5))
 	{
 		if (str[0] == '-')
-			s = ft_strdup("-2147483648");
+			s = ft_strdup("-32768");
 		else
-			s = ft_strdup("2147483647");
+			s = ft_strdup("32767");
 		while (s[++i])
 		{
 			if (s[i] != str[i] && s[i] < str[i] && ret == 0)
@@ -72,7 +72,7 @@ int		ft_ismax(char *str)
 				ret = 1;
 		}
 	}
-	ft_strdel(&str);
+	ft_strdel(&s);
 	if (ret == -1)
 		return ((int)ft_error("Too big altitude value"));
 	return (1);
