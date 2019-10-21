@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:46:32 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 15:08:31 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 17:26:35 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 # define PLAYER_HEIGHT 3
 # define INIT_SIZE 1
-# define INIT_ALTI 1
+# define INIT_ALTI 0.1
 # define INIT_COLOR BLUE
 
 # include <math.h>
@@ -71,6 +71,7 @@ void	projection_para(t_fdf *env);
 char	*get_big_line(int fd, t_cursor *width);
 char	***ft_get_tabis(int fd, t_cursor *width);
 char	**ft_get_basic_map(int fd, t_cursor *width);
+t_pt	**set_tab(t_pt **tab, t_cursor *width, char ***tabis);
 
 /*
 ** TOOL.C
@@ -113,6 +114,7 @@ void	ft_lock_menu(t_fdf *env);
 void	ft_putwin(t_fdf *env);
 void	ft_regular_menu(t_fdf *env);
 void	ft_game_menu(t_fdf *env);
+void	ft_outside_alert(t_fdf *env);
 
 /*
 ** HOOK.cC
@@ -162,9 +164,10 @@ int		color_set_mode_laby(float z, float player_size);
 */
 
 int		lock_color_switch(void);
-void	ft_get_borne(t_fdf *env);
+int		ft_get_borne(t_fdf *env);
 int		ft_boing(t_fdf *env);
 void	ft_ca_bouge(t_fdf *env);
+int		ft_is_inside(t_fdf *env);
 
 /*
 ** INIT.C

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 11:07:49 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 19:01:38 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 14:04:46 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ void	ft_tabfree(char **str)
 	y = 0;
 	while (str[y])
 	{
-		ft_strdel(&str[y]);
+		if (str[y])
+			ft_strdel(&str[y]);
 		y++;
 	}
 	ft_strdel(&str[y]);
-	free(str);
+	if (str)
+		free(str);
+	str = NULL;
 }
 
 char	*ft_strjoinfree(char const *s1, char const *s2)

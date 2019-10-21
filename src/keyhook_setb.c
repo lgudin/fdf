@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 12:12:21 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 14:30:32 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 17:31:54 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,19 @@ void	ft_key_hook_set_regu_back(t_fdf *env)
 
 void	ft_key_hook_set_lock(t_fdf *env)
 {
-	if (env->stat_mode == REG_S)
+	if ((env->val->inside = ft_is_inside(env)) == 1)
 	{
-		env->layout.y = 0;
-		env->layout.x = 0;
-		env->val->color_mode = DVD;
-		dvd_color_set(env);
-		ft_get_borne(env);
+		if (env->stat_mode == REG_S)
+		{
+			env->layout.y = 0;
+			env->layout.x = 0;
+			env->val->color_mode = DVD;
+			dvd_color_set(env);
+			ft_get_borne(env);
+		}
+		env->stat_mode = LOCK_S;
+		ft_ca_bouge(env);
+		if (ft_boing(env))
+			dvd_color_set(env);
 	}
-	env->stat_mode = LOCK_S;
-	ft_ca_bouge(env);
-	if (ft_boing(env))
-		dvd_color_set(env);
 }

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 14:01:18 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 19:42:08 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 17:23:05 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_pt	**ft_read_points(char *av, t_pt **tab, t_cursor *width)
 
 t_pt	**get_points(int fd, t_pt **tab, t_cursor *width)
 {
-	t_cursor	c;
 	char		***tabis;
 
 	tabis = NULL;
@@ -34,6 +33,13 @@ t_pt	**get_points(int fd, t_pt **tab, t_cursor *width)
 		return (ft_error("Parsing error : Fill badly formatted"));
 	if (!(tab = tab_malloc(tab, width)))
 		return (ft_error("Malloc tab ( read.c ) failed"));
+	return (set_tab(tab, width, tabis));
+}
+
+t_pt	**set_tab(t_pt **tab, t_cursor *width, char ***tabis)
+{
+	t_cursor	c;
+
 	c.y = -1;
 	while (++c.y < width->y)
 	{
@@ -46,10 +52,12 @@ t_pt	**get_points(int fd, t_pt **tab, t_cursor *width)
 			tab[c.y][c.x].y = c.y;
 			tab[c.y][c.x].z = ft_atoi(tabis[c.y][c.x]);
 			tab[c.y][c.x].color = INIT_COLOR;
-			free(tabis[c.y][c.x]);
+			ft_strdel(&tabis[c.y][c.x]);
 		}
+		ft_strdel(&tabis[c.y][c.x]);
+		free(tabis[c.y]);
 	}
-	ft_strdel(tabis[c.y]);
+	free(tabis[c.y]);
 	free(tabis);
 	tabis = NULL;
 	return (tab);

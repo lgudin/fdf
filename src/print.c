@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 13:55:38 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 14:30:50 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 16:03:37 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	fill_image(t_fdf *env)
 
 void	ft_print_menu(t_fdf *env)
 {
+	if (!(env->val->inside))
+		ft_outside_alert(env);
 	if (env->stat_mode == LOCK_S)
 		ft_lock_menu(env);
 	if (env->val->color_mode == LABY)

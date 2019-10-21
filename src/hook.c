@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/04 15:23:31 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/16 16:06:50 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 17:21:15 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int		ft_key_hook(int keycode, t_fdf *env)
 		ft_key_hook_proj_mode(env->val);
 	else if (keycode == W || keycode == A || keycode == S || keycode == D)
 		ft_move_pers(keycode, env);
+	if (ft_get_borne(env) && ft_is_inside(env))
+		env->val->inside = 1;
 	ft_expose_hook(env);
 	return (0);
 }

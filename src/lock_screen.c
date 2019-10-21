@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 20:03:37 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/14 18:25:52 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 17:20:15 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		ft_boing(t_fdf *env)
 	return (0);
 }
 
-void	ft_get_borne(t_fdf *env)
+int		ft_get_borne(t_fdf *env)
 {
 	t_cursor c;
 
@@ -109,4 +109,16 @@ void	ft_get_borne(t_fdf *env)
 			env->borne.y = env->proj[env->width->y - 1][c.x].y;
 		c.x++;
 	}
+	return (1);
+}
+
+int		ft_is_inside(t_fdf *env)
+{
+	if (env->borne.x + env->layout.x - DVD_SPEED >= LARGEUR ||
+		env->borne_min.x + env->layout.x + DVD_SPEED <= 0 ||
+		env->borne.y + env->layout.y - DVD_SPEED >= HAUTEUR ||
+		env->borne_min.y + env->layout.y + DVD_SPEED <= 0)
+		return (0);
+	else
+		return (1);
 }

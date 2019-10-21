@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 02:10:55 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/17 14:29:17 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/21 17:25:53 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	val_init(t_event *val)
 	val->p_mod = PARA;
 	val->p_mod = PARA;
 	val->game = LOOSE;
+	val->inside = 1;
 }
 
 void	ft_init(t_fdf *env)
