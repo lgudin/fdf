@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 11:07:49 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/21 23:06:39 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/22 00:14:20 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,7 @@ int		line_check(char *tab)
 				tab[i] != ',' && tab[i] != 'x' &&
 					!(tab[i] >= 'A' && tab[i] <= 'F') &&
 					!(tab[i] >= 'a' && tab[i] <= 'f'))
-		{
-			printf("%c passe pas \n", tab[i]);
 			return (0);
-		}
 	}
-	return 1;
+	return (1);
 }
