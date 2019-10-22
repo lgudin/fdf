@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 12:46:32 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/22 00:38:02 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/22 13:06:52 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 # define FALSE 0
 # define TRUE 1
-# define HAUTEUR 750 // /2 = 325
-# define LARGEUR 1250 // /2 = 625
+# define HAUTEUR 750
+# define LARGEUR 1250
 
 # define DVD_SPEED 5
 # define MOVE_SPEED 1

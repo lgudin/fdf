@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 14:51:27 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/22 00:28:46 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/22 14:45:48 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ char	**ft_get_basic_map(int fd, t_cursor *width)
 		return (ft_error("bigline bug"));
 	}
 	basic_map = ft_strsplit(big_line, '\n');
-	free(big_line);
-	big_line = NULL;
+	ft_strdel(&big_line);
 	if (width->y == ft_tablen(basic_map))
 		return (basic_map);
 	ft_tabfree(basic_map);
@@ -51,10 +50,8 @@ char	***ft_get_tabis(int fd, t_cursor *width)
 			ft_tabfree(basic_map);
 			return (ft_error("tablen"));
 		}
-		ft_strdel(&basic_map[y]);
 	}
-	ft_strdel(&basic_map[y]);
-	ft_strdel(basic_map);
+	ft_tabfree(basic_map);
 	width->x = ft_tablen(tabis[0]);
 	return (tabis);
 }
@@ -77,12 +74,8 @@ char	*get_big_line(int fd, t_cursor *width)
 			return (ft_error("Invalid char in file"));
 		}
 		big_line = ft_strjoinfree(big_line, "\n");
-		
-		if (line)
-		{
-			free(line);
-			line = NULL;
-		}
+		if (line != NULL)
+			ft_strdel(&line);
 		width->y++;
 	}
 	if (gnl == -1)

@@ -6,7 +6,7 @@
 /*   By: lgudin <lgudin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 10:13:23 by lgudin            #+#    #+#             */
-/*   Updated: 2019/10/21 18:22:41 by lgudin           ###   ########.fr       */
+/*   Updated: 2019/10/22 15:12:03 by lgudin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int		main(int ac, char **av)
 	if (!(env->tab = ft_read_points(av[1], env->tab, env->width)))
 		return ((int)ft_error("ft_read_points"));
 	ft_init_game(env);
-	env->val->size = ((LARGEUR + HAUTEUR) / 2) / ((env->width->x > env->width->y ?
-				env->width->x : env->width->y) + 1);
+	env->val->size = (LARGEUR + HAUTEUR) / 2 / env->width->x;
 	if (!(env->proj = proj_tab_malloc(env->proj, env->width)))
 		return ((int)ft_error("proj_tab malloc"));
 	mlx_hook(env->ptr.win, 2, 3, ft_key_hook, env);
